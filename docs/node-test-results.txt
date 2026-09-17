@@ -1,0 +1,946 @@
+
+> escrow-global-settlement-sandbox@0.3.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: HTTP wallet account session is purpose-bound and never authorizes sandbox escrow commands
+ok 1 - HTTP wallet account session is purpose-bound and never authorizes sandbox escrow commands
+  ---
+  duration_ms: 683.8023
+  type: 'test'
+  ...
+# Subtest: account login is distinct, purpose-bound, scoped, and revocable
+ok 2 - account login is distinct, purpose-bound, scoped, and revocable
+  ---
+  duration_ms: 22.0758
+  type: 'test'
+  ...
+# Subtest: wrong signer consumes the login nonce and cannot create a session
+ok 3 - wrong signer consumes the login nonce and cannot create a session
+  ---
+  duration_ms: 3.6759
+  type: 'test'
+  ...
+# Subtest: expired login challenges and sessions are pruned
+ok 4 - expired login challenges and sessions are pruned
+  ---
+  duration_ms: 2.5794
+  type: 'test'
+  ...
+# Subtest: account auth rejects malformed scope configuration
+ok 5 - account auth rejects malformed scope configuration
+  ---
+  duration_ms: 0.8672
+  type: 'test'
+  ...
+# Subtest: canonical terms serialization is key-order independent and Unicode normalized
+ok 6 - canonical terms serialization is key-order independent and Unicode normalized
+  ---
+  duration_ms: 5.7521
+  type: 'test'
+  ...
+# Subtest: pure-JS SHA-256 matches NIST boundary vectors and Node crypto
+ok 7 - pure-JS SHA-256 matches NIST boundary vectors and Node crypto
+  ---
+  duration_ms: 13.4296
+  type: 'test'
+  ...
+# Subtest: canonicalization rejects ambiguous values and cycles
+ok 8 - canonicalization rejects ambiguous values and cycles
+  ---
+  duration_ms: 1.1468
+  type: 'test'
+  ...
+# Subtest: new agreements carry a verifiable current terms hash
+ok 9 - new agreements carry a verifiable current terms hash
+  ---
+  duration_ms: 29.3599
+  type: 'test'
+  ...
+# Subtest: bilateral amendments advance the current hash without replacing the original commitment
+ok 10 - bilateral amendments advance the current hash without replacing the original commitment
+  ---
+  duration_ms: 37.2362
+  type: 'test'
+  ...
+# Subtest: Local sandbox HTTP API integration
+    # Subtest: health explicitly reports sandbox with no real funds
+    ok 1 - health explicitly reports sandbox with no real funds
+      ---
+      duration_ms: 10.7342
+      type: 'test'
+      ...
+    # Subtest: HTML, stylesheet, and shared model are served with correct types
+    ok 2 - HTML, stylesheet, and shared model are served with correct types
+      ---
+      duration_ms: 33.3879
+      type: 'test'
+      ...
+    # Subtest: untrusted web origin is refused
+    ok 3 - untrusted web origin is refused
+      ---
+      duration_ms: 10.1936
+      type: 'test'
+      ...
+    # Subtest: unknown demo identity is not granted a role
+    ok 4 - unknown demo identity is not granted a role
+      ---
+      duration_ms: 8.8903
+      type: 'test'
+      ...
+    # Subtest: idempotent retries create only one record
+    ok 5 - idempotent retries create only one record
+      ---
+      duration_ms: 42.7365
+      type: 'test'
+      ...
+    # Subtest: idempotency survives more than one thousand later commands
+    ok 6 - idempotency survives more than one thousand later commands
+      ---
+      duration_ms: 40233.1968
+      type: 'test'
+      ...
+    # Subtest: reused key with altered content is refused
+    ok 7 - reused key with altered content is refused
+      ---
+      duration_ms: 10.5723
+      type: 'test'
+      ...
+    # Subtest: wallet substitution cannot be smuggled through command payload
+    ok 8 - wallet substitution cannot be smuggled through command payload
+      ---
+      duration_ms: 45.7797
+      type: 'test'
+      ...
+    # Subtest: stale writes return a conflict instead of overwriting state
+    ok 9 - stale writes return a conflict instead of overwriting state
+      ---
+      duration_ms: 37.436
+      type: 'test'
+      ...
+    # Subtest: committed data survives process restart
+    ok 10 - committed data survives process restart
+      ---
+      duration_ms: 316.934
+      type: 'test'
+      ...
+    1..10
+ok 11 - Local sandbox HTTP API integration
+  ---
+  duration_ms: 41357.3019
+  type: 'test'
+  ...
+# Subtest: A live-money mode is rejected on startup
+ok 12 - A live-money mode is rejected on startup
+  ---
+  duration_ms: 155.5229
+  type: 'test'
+  ...
+# Subtest: USDC: goods approval and warranty release never debit the other asset
+ok 13 - USDC: goods approval and warranty release never debit the other asset
+  ---
+  duration_ms: 92.0198
+  type: 'test'
+  ...
+# Subtest: USDC: goods return refunds principal and reserve in the original asset
+ok 14 - USDC: goods return refunds principal and reserve in the original asset
+  ---
+  duration_ms: 38.3482
+  type: 'test'
+  ...
+# Subtest: USDC: late goods refund does not convert balances
+ok 15 - USDC: late goods refund does not convert balances
+  ---
+  duration_ms: 14.9336
+  type: 'test'
+  ...
+# Subtest: USDC: high other-asset balance cannot fund an underfunded goods order
+ok 16 - USDC: high other-asset balance cannot fund an underfunded goods order
+  ---
+  duration_ms: 10.4686
+  type: 'test'
+  ...
+# Subtest: USDC: pre-agreed timed service release retains asset and precise event amount
+ok 17 - USDC: pre-agreed timed service release retains asset and precise event amount
+  ---
+  duration_ms: 10.717
+  type: 'test'
+  ...
+# Subtest: USDT: goods approval and warranty release never debit the other asset
+ok 18 - USDT: goods approval and warranty release never debit the other asset
+  ---
+  duration_ms: 19.1916
+  type: 'test'
+  ...
+# Subtest: USDT: goods return refunds principal and reserve in the original asset
+ok 19 - USDT: goods return refunds principal and reserve in the original asset
+  ---
+  duration_ms: 27.9647
+  type: 'test'
+  ...
+# Subtest: USDT: late goods refund does not convert balances
+ok 20 - USDT: late goods refund does not convert balances
+  ---
+  duration_ms: 14.3122
+  type: 'test'
+  ...
+# Subtest: USDT: high other-asset balance cannot fund an underfunded goods order
+ok 21 - USDT: high other-asset balance cannot fund an underfunded goods order
+  ---
+  duration_ms: 8.0852
+  type: 'test'
+  ...
+# Subtest: USDT: pre-agreed timed service release retains asset and precise event amount
+ok 22 - USDT: pre-agreed timed service release retains asset and precise event amount
+  ---
+  duration_ms: 9.4891
+  type: 'test'
+  ...
+# Subtest: Migration preserves pre-existing terms hashes, seals and event evidence
+ok 23 - Migration preserves pre-existing terms hashes, seals and event evidence
+  ---
+  duration_ms: 13.5496
+  type: 'test'
+  ...
+# Subtest: Money formatting retains significant micro precision without floating point
+ok 24 - Money formatting retains significant micro precision without floating point
+  ---
+  duration_ms: 0.2651
+  type: 'test'
+  ...
+# Subtest: seed state preserves all simulated funds
+ok 25 - seed state preserves all simulated funds
+  ---
+  duration_ms: 119.6639
+  type: 'test'
+  ...
+# Subtest: decimal parser is exact
+ok 26 - decimal parser is exact
+  ---
+  duration_ms: 0.4023
+  type: 'test'
+  ...
+# Subtest: decimal parser rejects negative, exponent, excess precision, NaN and number inputs
+ok 27 - decimal parser rejects negative, exponent, excess precision, NaN and number inputs
+  ---
+  duration_ms: 0.6214
+  type: 'test'
+  ...
+# Subtest: funding debits principal plus 3 percent fee reserve
+ok 28 - funding debits principal plus 3 percent fee reserve
+  ---
+  duration_ms: 4.9686
+  type: 'test'
+  ...
+# Subtest: buyer cannot fund twice
+ok 29 - buyer cannot fund twice
+  ---
+  duration_ms: 5.399
+  type: 'test'
+  ...
+# Subtest: seller cannot fund from buyer account
+ok 30 - seller cannot fund from buyer account
+  ---
+  duration_ms: 5.1369
+  type: 'test'
+  ...
+# Subtest: buyer cannot submit seller delivery
+ok 31 - buyer cannot submit seller delivery
+  ---
+  duration_ms: 4.9691
+  type: 'test'
+  ...
+# Subtest: approval requires delivery and explicit checklist acceptance
+ok 32 - approval requires delivery and explicit checklist acceptance
+  ---
+  duration_ms: 4.6853
+  type: 'test'
+  ...
+# Subtest: accepted payment goes only to original seller; fee to fixed treasury
+ok 33 - accepted payment goes only to original seller; fee to fixed treasury
+  ---
+  duration_ms: 6.7423
+  type: 'test'
+  ...
+# Subtest: arbitrary destination field rejected
+ok 34 - arbitrary destination field rejected
+  ---
+  duration_ms: 7.0865
+  type: 'test'
+  ...
+# Subtest: no arbitrary transfer or update wallet command exists
+ok 35 - no arbitrary transfer or update wallet command exists
+  ---
+  duration_ms: 4.8187
+  type: 'test'
+  ...
+# Subtest: admin cannot approve an undisputed delivery
+ok 36 - admin cannot approve an undisputed delivery
+  ---
+  duration_ms: 6.0991
+  type: 'test'
+  ...
+# Subtest: 5 percent dispute fee is paid separately by the initiating buyer
+ok 37 - 5 percent dispute fee is paid separately by the initiating buyer
+  ---
+  duration_ms: 5.4284
+  type: 'test'
+  ...
+# Subtest: seller can dispute and pays own fee
+ok 38 - seller can dispute and pays own fee
+  ---
+  duration_ms: 4.48
+  type: 'test'
+  ...
+# Subtest: fee acknowledgement is mandatory
+ok 39 - fee acknowledgement is mandatory
+  ---
+  duration_ms: 4.4289
+  type: 'test'
+  ...
+# Subtest: dispute freezes buyer approval and timed release
+ok 40 - dispute freezes buyer approval and timed release
+  ---
+  duration_ms: 9.2067
+  type: 'test'
+  ...
+# Subtest: only admin can rule on a dispute
+ok 41 - only admin can rule on a dispute
+  ---
+  duration_ms: 6.4848
+  type: 'test'
+  ...
+# Subtest: admin refund returns principal and unused 3 percent reserve, not dispute fee
+ok 42 - admin refund returns principal and unused 3 percent reserve, not dispute fee
+  ---
+  duration_ms: 5.2836
+  type: 'test'
+  ...
+# Subtest: admin release transfers exactly disputed principal to fixed seller
+ok 43 - admin release transfers exactly disputed principal to fixed seller
+  ---
+  duration_ms: 5.3496
+  type: 'test'
+  ...
+# Subtest: admin cannot set arbitrary split or amount
+ok 44 - admin cannot set arbitrary split or amount
+  ---
+  duration_ms: 5.6128
+  type: 'test'
+  ...
+# Subtest: negotiation alone moves no money and needs counterparty approval
+ok 45 - negotiation alone moves no money and needs counterparty approval
+  ---
+  duration_ms: 5.0568
+  type: 'test'
+  ...
+# Subtest: bilateral 600/400 settlement produces 600 seller, 412 buyer, 18 fee
+ok 46 - bilateral 600/400 settlement produces 600 seller, 412 buyer, 18 fee
+  ---
+  duration_ms: 7.4595
+  type: 'test'
+  ...
+# Subtest: admin cannot propose or sign new payment terms
+ok 47 - admin cannot propose or sign new payment terms
+  ---
+  duration_ms: 11.3459
+  type: 'test'
+  ...
+# Subtest: amendment returns unused funds and keeps revised principal locked
+ok 48 - amendment returns unused funds and keeps revised principal locked
+  ---
+  duration_ms: 5.6746
+  type: 'test'
+  ...
+# Subtest: amended milestone can later settle with only 3 percent on actual payout
+ok 49 - amended milestone can later settle with only 3 percent on actual payout
+  ---
+  duration_ms: 8.8467
+  type: 'test'
+  ...
+# Subtest: expired proposal is rejected
+ok 50 - expired proposal is rejected
+  ---
+  duration_ms: 4.253
+  type: 'test'
+  ...
+# Subtest: new delivery invalidates old proposal
+ok 51 - new delivery invalidates old proposal
+  ---
+  duration_ms: 5.706
+  type: 'test'
+  ...
+# Subtest: stale order version rejected
+ok 52 - stale order version rejected
+  ---
+  duration_ms: 4.8865
+  type: 'test'
+  ...
+# Subtest: failed operations are atomic
+ok 53 - failed operations are atomic
+  ---
+  duration_ms: 3.8706
+  type: 'test'
+  ...
+# Subtest: unrelated seller cannot access another deal
+ok 54 - unrelated seller cannot access another deal
+  ---
+  duration_ms: 3.0305
+  type: 'test'
+  ...
+# Subtest: milestones are independently disputed and settled
+ok 55 - milestones are independently disputed and settled
+  ---
+  duration_ms: 7.0156
+  type: 'test'
+  ...
+# Subtest: included revision is free and revision limit enforced
+ok 56 - included revision is free and revision limit enforced
+  ---
+  duration_ms: 7.2021
+  type: 'test'
+  ...
+# Subtest: timed mode releases only after deadline
+ok 57 - timed mode releases only after deadline
+  ---
+  duration_ms: 6.3487
+  type: 'test'
+  ...
+# Subtest: manual mode never becomes timed release
+ok 58 - manual mode never becomes timed release
+  ---
+  duration_ms: 4.1301
+  type: 'test'
+  ...
+# Subtest: late refund is gated by no submission and a 48-hour grace period
+ok 59 - late refund is gated by no submission and a 48-hour grace period
+  ---
+  duration_ms: 4.5338
+  type: 'test'
+  ...
+# Subtest: delivered work cannot be taken back through no-submission refund
+ok 60 - delivered work cannot be taken back through no-submission refund
+  ---
+  duration_ms: 4.6996
+  type: 'test'
+  ...
+# Subtest: a review requires completion and can only be written once
+ok 61 - a review requires completion and can only be written once
+  ---
+  duration_ms: 7.4309
+  type: 'test'
+  ...
+# Subtest: fractional amounts and reserve rounding conserve money after amendment
+ok 62 - fractional amounts and reserve rounding conserve money after amendment
+  ---
+  duration_ms: 7.7888
+  type: 'test'
+  ...
+# Subtest: insufficient dispute balance fails without charging or freezing
+ok 63 - insufficient dispute balance fails without charging or freezing
+  ---
+  duration_ms: 3.6874
+  type: 'test'
+  ...
+# Subtest: listed checkout cannot override price or seller
+ok 64 - listed checkout cannot override price or seller
+  ---
+  duration_ms: 0.8901
+  type: 'test'
+  ...
+# Subtest: same actor cannot buy own service
+ok 65 - same actor cannot buy own service
+  ---
+  duration_ms: 1.0302
+  type: 'test'
+  ...
+# Subtest: listing approval is separate from order authority
+ok 66 - listing approval is separate from order authority
+  ---
+  duration_ms: 2.2389
+  type: 'test'
+  ...
+# Subtest: Payment API proves destination ownership without enabling live custody
+    # Subtest: Public configuration exposes capabilities but no API keys
+    ok 1 - Public configuration exposes capabilities but no API keys
+      ---
+      duration_ms: 6.909
+      type: 'test'
+      ...
+    # Subtest: No real escrow deposit transaction can be requested
+    ok 2 - No real escrow deposit transaction can be requested
+      ---
+      duration_ms: 10.1505
+      type: 'test'
+      ...
+    # Subtest: Checkout without an ownership proof fails
+    ok 3 - Checkout without an ownership proof fails
+      ---
+      duration_ms: 7.8524
+      type: 'test'
+      ...
+    # Subtest: A hostile origin cannot request a wallet proof
+    ok 4 - A hostile origin cannot request a wallet proof
+      ---
+      duration_ms: 4.4832
+      type: 'test'
+      ...
+    # Subtest: Signed proof establishes HttpOnly, same-site, bounded purpose session
+    ok 5 - Signed proof establishes HttpOnly, same-site, bounded purpose session
+      ---
+      duration_ms: 16.5874
+      type: 'test'
+      ...
+    # Subtest: A used ownership nonce is rejected
+    ok 6 - A used ownership nonce is rejected
+      ---
+      duration_ms: 6.3161
+      type: 'test'
+      ...
+    # Subtest: On-ramp cannot accept a caller-supplied replacement wallet
+    ok 7 - On-ramp cannot accept a caller-supplied replacement wallet
+      ---
+      duration_ms: 4.5341
+      type: 'test'
+      ...
+    # Subtest: Checkout signs the authenticated wallet and remains separate from escrow
+    ok 8 - Checkout signs the authenticated wallet and remains separate from escrow
+      ---
+      duration_ms: 21.9437
+      type: 'test'
+      ...
+    # Subtest: Payment routes cannot credit simulated escrow balances
+    ok 9 - Payment routes cannot credit simulated escrow balances
+      ---
+      duration_ms: 7.348
+      type: 'test'
+      ...
+    # Subtest: Secrets and arbitrary source paths are not served
+    ok 10 - Secrets and arbitrary source paths are not served
+      ---
+      duration_ms: 66.8246
+      type: 'test'
+      ...
+    1..10
+ok 67 - Payment API proves destination ownership without enabling live custody
+  ---
+  duration_ms: 760.7648
+  type: 'test'
+  ...
+# Subtest: Canonical stablecoin mint constants remain exact
+ok 68 - Canonical stablecoin mint constants remain exact
+  ---
+  duration_ms: 2.2105
+  type: 'test'
+  ...
+# Subtest: Base58 round trips leading zero bytes and generated public keys
+ok 69 - Base58 round trips leading zero bytes and generated public keys
+  ---
+  duration_ms: 7.0894
+  type: 'test'
+  ...
+# Subtest: Receiving address validation rejects mints, system address, whitespace and malformed keys
+ok 70 - Receiving address validation rejects mints, system address, whitespace and malformed keys
+  ---
+  duration_ms: 5.4128
+  type: 'test'
+  ...
+# Subtest: Decimal amounts reject exponent, negative, fractional precision and excessive value
+ok 71 - Decimal amounts reject exponent, negative, fractional precision and excessive value
+  ---
+  duration_ms: 0.7608
+  type: 'test'
+  ...
+# Subtest: Solana QR URI is a canonical token transfer explicitly not an escrow deposit
+ok 72 - Solana QR URI is a canonical token transfer explicitly not an escrow deposit
+  ---
+  duration_ms: 2.3131
+  type: 'test'
+  ...
+# Subtest: External URLs reject lookalike hosts, credentials, HTTP and arbitrary ports
+ok 73 - External URLs reject lookalike hosts, credentials, HTTP and arbitrary ports
+  ---
+  duration_ms: 0.4521
+  type: 'test'
+  ...
+# Subtest: MoonPay signer matches official documentation vector exactly
+ok 74 - MoonPay signer matches official documentation vector exactly
+  ---
+  duration_ms: 1.0274
+  type: 'test'
+  ...
+# Subtest: MoonPay signs every parameter, with signature last and no exposed secret
+ok 75 - MoonPay signs every parameter, with signature last and no exposed secret
+  ---
+  duration_ms: 1.6704
+  type: 'test'
+  ...
+# Subtest: Signer rejects other hosts, existing signatures and fragments
+ok 76 - Signer rejects other hosts, existing signatures and fragments
+  ---
+  duration_ms: 0.9381
+  type: 'test'
+  ...
+# Subtest: MoonPay requires explicit verified network-specific asset codes and correct environment keys
+ok 77 - MoonPay requires explicit verified network-specific asset codes and correct environment keys
+  ---
+  duration_ms: 2.4986
+  type: 'test'
+  ...
+# Subtest: MoonPay rejects unapproved asset, fiat, method and redirect protocols
+ok 78 - MoonPay rejects unapproved asset, fiat, method and redirect protocols
+  ---
+  duration_ms: 2.4964
+  type: 'test'
+  ...
+# Subtest: Live purchases require separate opt-in and verified public IPv4; forwarded headers are not a parameter
+ok 79 - Live purchases require separate opt-in and verified public IPv4; forwarded headers are not a parameter
+  ---
+  duration_ms: 15.5449
+  type: 'test'
+  ...
+# Subtest: Public provider config never includes keys or signing secret
+ok 80 - Public provider config never includes keys or signing secret
+  ---
+  duration_ms: 0.5205
+  type: 'test'
+  ...
+# Subtest: Wallet ownership message names origin, wallet, expiry and restricted purpose
+ok 81 - Wallet ownership message names origin, wallet, expiry and restricted purpose
+  ---
+  duration_ms: 4.5855
+  type: 'test'
+  ...
+# Subtest: Correct Ed25519 proof creates a short-lived session and prevents replay
+ok 82 - Correct Ed25519 proof creates a short-lived session and prevents replay
+  ---
+  duration_ms: 3.844
+  type: 'test'
+  ...
+# Subtest: Wrong signer is rejected and consumes the challenged nonce
+ok 83 - Wrong signer is rejected and consumes the challenged nonce
+  ---
+  duration_ms: 2.7126
+  type: 'test'
+  ...
+# Subtest: Expired challenge and session are rejected and pruned
+ok 84 - Expired challenge and session are rejected and pruned
+  ---
+  duration_ms: 1.9046
+  type: 'test'
+  ...
+# Subtest: Ownership proof cannot be reused for another origin or altered message
+ok 85 - Ownership proof cannot be reused for another origin or altered message
+  ---
+  duration_ms: 1.2249
+  type: 'test'
+  ...
+# Subtest: Wallet challenges enforce capacity and reject malformed signatures
+ok 86 - Wallet challenges enforce capacity and reject malformed signatures
+  ---
+  duration_ms: 0.8485
+  type: 'test'
+  ...
+# Subtest: USDC: funding, split, refund and fees preserve the other ledger
+ok 87 - USDC: funding, split, refund and fees preserve the other ledger
+  ---
+  duration_ms: 75.9568
+  type: 'test'
+  ...
+# Subtest: USDC: dispute/refund charges initiator only in order asset
+ok 88 - USDC: dispute/refund charges initiator only in order asset
+  ---
+  duration_ms: 12.1169
+  type: 'test'
+  ...
+# Subtest: USDC: amendments preserve asset and conserve each ledger
+ok 89 - USDC: amendments preserve asset and conserve each ledger
+  ---
+  duration_ms: 15.2749
+  type: 'test'
+  ...
+# Subtest: USDC: existing order cannot switch asset, token, amount or destination
+ok 90 - USDC: existing order cannot switch asset, token, amount or destination
+  ---
+  duration_ms: 10.0212
+  type: 'test'
+  ...
+# Subtest: USDC: independently quoted products snapshot selected values
+ok 91 - USDC: independently quoted products snapshot selected values
+  ---
+  duration_ms: 84.2054
+  type: 'test'
+  ...
+# Subtest: USDC: brief quote and agreement keep brief asset
+ok 92 - USDC: brief quote and agreement keep brief asset
+  ---
+  duration_ms: 2.1102
+  type: 'test'
+  ...
+# Subtest: USDT: funding, split, refund and fees preserve the other ledger
+ok 93 - USDT: funding, split, refund and fees preserve the other ledger
+  ---
+  duration_ms: 7.2135
+  type: 'test'
+  ...
+# Subtest: USDT: dispute/refund charges initiator only in order asset
+ok 94 - USDT: dispute/refund charges initiator only in order asset
+  ---
+  duration_ms: 18.3417
+  type: 'test'
+  ...
+# Subtest: USDT: amendments preserve asset and conserve each ledger
+ok 95 - USDT: amendments preserve asset and conserve each ledger
+  ---
+  duration_ms: 25.8985
+  type: 'test'
+  ...
+# Subtest: USDT: existing order cannot switch asset, token, amount or destination
+ok 96 - USDT: existing order cannot switch asset, token, amount or destination
+  ---
+  duration_ms: 18.6938
+  type: 'test'
+  ...
+# Subtest: USDT: independently quoted products snapshot selected values
+ok 97 - USDT: independently quoted products snapshot selected values
+  ---
+  duration_ms: 62.1672
+  type: 'test'
+  ...
+# Subtest: USDT: brief quote and agreement keep brief asset
+ok 98 - USDT: brief quote and agreement keep brief asset
+  ---
+  duration_ms: 1.4135
+  type: 'test'
+  ...
+# Subtest: USDT-only packages never silently fall back or convert
+ok 99 - USDT-only packages never silently fall back or convert
+  ---
+  duration_ms: 3.029
+  type: 'test'
+  ...
+# Subtest: Unsupported or wrong-case assets and scalar v3 aliases are rejected atomically
+ok 100 - Unsupported or wrong-case assets and scalar v3 aliases are rejected atomically
+  ---
+  duration_ms: 8.1823
+  type: 'test'
+  ...
+# Subtest: legacy-base: pure deterministic migration preserves evidence, supply and replay journal
+ok 101 - legacy-base: pure deterministic migration preserves evidence, supply and replay journal
+  ---
+  duration_ms: 6.4131
+  type: 'test'
+  ...
+# Subtest: legacy-universal: pure deterministic migration preserves evidence, supply and replay journal
+ok 102 - legacy-universal: pure deterministic migration preserves evidence, supply and replay journal
+  ---
+  duration_ms: 4.8158
+  type: 'test'
+  ...
+# Subtest: Migration rejects corrupted or mixed data without mutating the source
+ok 103 - Migration rejects corrupted or mixed data without mutating the source
+  ---
+  duration_ms: 19.8404
+  type: 'test'
+  ...
+# Subtest: Universal seed has six products, eight services and a shipped goods order
+ok 104 - Universal seed has six products, eight services and a shipped goods order
+  ---
+  duration_ms: 135.1279
+  type: 'test'
+  ...
+# Subtest: Products require seller role, physical category, inspection and warranty terms
+ok 105 - Products require seller role, physical category, inspection and warranty terms
+  ---
+  duration_ms: 2.1441
+  type: 'test'
+  ...
+# Subtest: Product checkout binds quantity, price, shipping and immutable recipients
+ok 106 - Product checkout binds quantity, price, shipping and immutable recipients
+  ---
+  duration_ms: 9.4245
+  type: 'test'
+  ...
+# Subtest: Creating unfunded goods agreements does not reserve stock
+ok 107 - Creating unfunded goods agreements does not reserve stock
+  ---
+  duration_ms: 8.215
+  type: 'test'
+  ...
+# Subtest: Funding rechecks inventory and rejects an oversold agreement atomically
+ok 108 - Funding rechecks inventory and rejects an oversold agreement atomically
+  ---
+  duration_ms: 33.6573
+  type: 'test'
+  ...
+# Subtest: Two already created orders cannot consume the same last unit
+ok 109 - Two already created orders cannot consume the same last unit
+  ---
+  duration_ms: 29.8774
+  type: 'test'
+  ...
+# Subtest: Product purchase cannot smuggle a price, recipient or token override
+ok 110 - Product purchase cannot smuggle a price, recipient or token override
+  ---
+  duration_ms: 12.8345
+  type: 'test'
+  ...
+# Subtest: Legacy service checkout cannot bypass product inspection policy
+ok 111 - Legacy service checkout cannot bypass product inspection policy
+  ---
+  duration_ms: 7.2443
+  type: 'test'
+  ...
+# Subtest: Seller shipment changes no token balance or release status
+ok 112 - Seller shipment changes no token balance or release status
+  ---
+  duration_ms: 5.0856
+  type: 'test'
+  ...
+# Subtest: Buyer and reviewer cannot record a seller shipment
+ok 113 - Buyer and reviewer cannot record a seller shipment
+  ---
+  duration_ms: 11.1761
+  type: 'test'
+  ...
+# Subtest: A seller-reported delivered event does not start inspection or settle
+ok 114 - A seller-reported delivered event does not start inspection or settle
+  ---
+  duration_ms: 9.0026
+  type: 'test'
+  ...
+# Subtest: Only buyer receipt starts the inspection clock and funds remain held
+ok 115 - Only buyer receipt starts the inspection clock and funds remain held
+  ---
+  duration_ms: 9.7105
+  type: 'test'
+  ...
+# Subtest: Receipt is one-time and cannot be recorded without acknowledgement
+ok 116 - Receipt is one-time and cannot be recorded without acknowledgement
+  ---
+  duration_ms: 11.8154
+  type: 'test'
+  ...
+# Subtest: No product approval before physical receipt and no service-style submission
+ok 117 - No product approval before physical receipt and no service-style submission
+  ---
+  duration_ms: 8.8381
+  type: 'test'
+  ...
+# Subtest: Delivery acceptance releases only main principal plus its 3% commission
+ok 118 - Delivery acceptance releases only main principal plus its 3% commission
+  ---
+  duration_ms: 14.1997
+  type: 'test'
+  ...
+# Subtest: Warranty release requires elapsed period, buyer and accepted main delivery
+ok 119 - Warranty release requires elapsed period, buyer and accepted main delivery
+  ---
+  duration_ms: 16.3851
+  type: 'test'
+  ...
+# Subtest: Shipped goods cannot be refunded through the no-submission shortcut
+ok 120 - Shipped goods cannot be refunded through the no-submission shortcut
+  ---
+  duration_ms: 7.6639
+  type: 'test'
+  ...
+# Subtest: Unshipped goods retain the agreed late-refund remedy
+ok 121 - Unshipped goods retain the agreed late-refund remedy
+  ---
+  duration_ms: 8.4597
+  type: 'test'
+  ...
+# Subtest: Free return request blocks direct acceptance but does not refund or charge 5%
+ok 122 - Free return request blocks direct acceptance but does not refund or charge 5%
+  ---
+  duration_ms: 9.4087
+  type: 'test'
+  ...
+# Subtest: A late return request fails, leaving negotiation/dispute available
+ok 123 - A late return request fails, leaving negotiation/dispute available
+  ---
+  duration_ms: 9.2003
+  type: 'test'
+  ...
+# Subtest: Return logistics require the correct actor and sequence
+ok 124 - Return logistics require the correct actor and sequence
+  ---
+  duration_ms: 7.7825
+  type: 'test'
+  ...
+# Subtest: Full return refund still requires the actual buyer to accept each proposal
+ok 125 - Full return refund still requires the actual buyer to accept each proposal
+  ---
+  duration_ms: 16.7957
+  type: 'test'
+  ...
+# Subtest: Formal product dispute charges 5% only on the disputed held milestone
+ok 126 - Formal product dispute charges 5% only on the disputed held milestone
+  ---
+  duration_ms: 12.3317
+  type: 'test'
+  ...
+# Subtest: Reviewer cannot redirect, split or modify a goods agreement
+ok 127 - Reviewer cannot redirect, split or modify a goods agreement
+  ---
+  duration_ms: 8.793
+  type: 'test'
+  ...
+# Subtest: Mutual goods amendment starts a new shipment/inspection cycle without changing recipients
+ok 128 - Mutual goods amendment starts a new shipment/inspection cycle without changing recipients
+  ---
+  duration_ms: 16.9373
+  type: 'test'
+  ...
+# Subtest: Evidence records preserve only the digest metadata, never file bytes
+ok 129 - Evidence records preserve only the digest metadata, never file bytes
+  ---
+  duration_ms: 8.6469
+  type: 'test'
+  ...
+# Subtest: Blocking prevents new deals and messages but not settlement obligations
+ok 130 - Blocking prevents new deals and messages but not settlement obligations
+  ---
+  duration_ms: 11.8955
+  type: 'test'
+  ...
+# Subtest: Reports cannot alter listing status or escrow balances
+ok 131 - Reports cannot alter listing status or escrow balances
+  ---
+  duration_ms: 8.3228
+  type: 'test'
+  ...
+# Subtest: Each new contract milestone has independent acceptance criteria and exact total
+ok 132 - Each new contract milestone has independent acceptance criteria and exact total
+  ---
+  duration_ms: 3.673
+  type: 'test'
+  ...
+# Subtest: Commerce and milestone definitions cannot be silently edited between states
+ok 133 - Commerce and milestone definitions cannot be silently edited between states
+  ---
+  duration_ms: 7.0958
+  type: 'test'
+  ...
+# Subtest: Product publication rejects a holdback that would create a sub-minimum warranty milestone
+ok 134 - Product publication rejects a holdback that would create a sub-minimum warranty milestone
+  ---
+  duration_ms: 1.0993
+  type: 'test'
+  ...
+# Subtest: Reported published listings can be hidden and reinstated without changing funded deals
+ok 135 - Reported published listings can be hidden and reinstated without changing funded deals
+  ---
+  duration_ms: 11.0248
+  type: 'test'
+  ...
+1..135
+# tests 155
+# suites 0
+# pass 155
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 41877.6871

@@ -1,0 +1,5 @@
+
+> escrow-global-settlement-sandbox@0.3.0 test:browser:http
+> python tests/browser_http.py
+
+{"passed": 1, "ordersBefore": 4, "afterLostResponse": 5, "afterRetry": 5}

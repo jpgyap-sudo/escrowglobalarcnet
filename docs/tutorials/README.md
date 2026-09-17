@@ -1,0 +1,27 @@
+# Escrow Global Guidebook
+
+These guides also appear inside the app. Provider steps and availability should be rechecked before acting. Never upload identity documents or wallet secrets to Escrow Global.
+
+- [Before you start an escrow](production-readiness.md)
+- [How escrow works, simply](solana-escrow-simple.md)
+- [Your first protected agreement](first-deal.md)
+- [Understand the fee and refund math](fee-breakdown.md)
+- [What makes an escrow feel clear](non-custodial.md)
+- [How to fund a deal safely](funding-safely.md)
+- [Buy and sell physical products](physical-goods.md)
+- [Buy USDC or USDT with a card or bank](buy-crypto.md)
+- [Swap into USDC or USDT with Jupiter](swap.md)
+- [Register for Jupiter Global / Spend](jupiter-register.md)
+- [Complete verification safely](jupiter-kyc.md)
+- [Fund and use a Jupiter card](jupiter-card.md)
+- [Pay a local merchant with Jupiter QR Pay](jupiter-qr.md)
+- [Receive a wallet transfer by QR](wallet-qr.md)
+- [Escrow development, marketing and contracts](clear-scope.md)
+- [Design milestones that are easy to approve](milestone-planning.md)
+- [Handle a dispute without losing the facts](dispute-safely.md)
+- [How to check a payment status](onchain-reconciliation.md)
+- [Stay safe when approving a payment](wallet-security.md)
+- [Understand what a deal receipt shows](protection-receipts.md)
+- [Know your rights and deadlines](rights-deadlines.md)
+- [Understand fee support](fee-sponsorship.md)
+- [Use the Action Center without missing a deadline](action-center.md)

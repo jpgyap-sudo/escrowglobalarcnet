@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: USDC: goods approval and warranty release never debit the other asset
+ok 1 - USDC: goods approval and warranty release never debit the other asset
+  ---
+  duration_ms: 90.2877
+  type: 'test'
+  ...
+# Subtest: USDC: goods return refunds principal and reserve in the original asset
+ok 2 - USDC: goods return refunds principal and reserve in the original asset
+  ---
+  duration_ms: 15.7852
+  type: 'test'
+  ...
+# Subtest: USDC: late goods refund does not convert balances
+ok 3 - USDC: late goods refund does not convert balances
+  ---
+  duration_ms: 6.9822
+  type: 'test'
+  ...
+# Subtest: USDC: high other-asset balance cannot fund an underfunded goods order
+ok 4 - USDC: high other-asset balance cannot fund an underfunded goods order
+  ---
+  duration_ms: 6.488
+  type: 'test'
+  ...
+# Subtest: USDC: pre-agreed timed service release retains asset and precise event amount
+ok 5 - USDC: pre-agreed timed service release retains asset and precise event amount
+  ---
+  duration_ms: 6.4265
+  type: 'test'
+  ...
+# Subtest: USDT: goods approval and warranty release never debit the other asset
+ok 6 - USDT: goods approval and warranty release never debit the other asset
+  ---
+  duration_ms: 8.925
+  type: 'test'
+  ...
+# Subtest: USDT: goods return refunds principal and reserve in the original asset
+ok 7 - USDT: goods return refunds principal and reserve in the original asset
+  ---
+  duration_ms: 13.5938
+  type: 'test'
+  ...
+# Subtest: USDT: late goods refund does not convert balances
+ok 8 - USDT: late goods refund does not convert balances
+  ---
+  duration_ms: 5.6368
+  type: 'test'
+  ...
+# Subtest: USDT: high other-asset balance cannot fund an underfunded goods order
+ok 9 - USDT: high other-asset balance cannot fund an underfunded goods order
+  ---
+  duration_ms: 3.9894
+  type: 'test'
+  ...
+# Subtest: USDT: pre-agreed timed service release retains asset and precise event amount
+ok 10 - USDT: pre-agreed timed service release retains asset and precise event amount
+  ---
+  duration_ms: 4.1942
+  type: 'test'
+  ...
+# Subtest: Migration preserves pre-existing terms hashes, seals and event evidence
+ok 11 - Migration preserves pre-existing terms hashes, seals and event evidence
+  ---
+  duration_ms: 7.1331
+  type: 'test'
+  ...
+# Subtest: Money formatting retains significant micro precision without floating point
+ok 12 - Money formatting retains significant micro precision without floating point
+  ---
+  duration_ms: 0.1772
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 310.3801

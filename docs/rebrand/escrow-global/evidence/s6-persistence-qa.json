@@ -1,0 +1,15 @@
+{
+  "passed": 10,
+  "checks": [
+    "Legacy browser migration: USDC only, no USDT minted, old bytes retained",
+    "Unquoted USDT product cannot be checked out",
+    "invalid JSON: no silent reseed or legacy fallback",
+    "Explicit reset makes a backup first; exact raw export and legacy key preserved",
+    "future schema: no silent reseed or legacy fallback",
+    "Stale browser command rejected without overwriting peer data",
+    "HTTP migration validates then preserves byte-exact adjacent backup",
+    "New static modules, tokens and both WebP assets explicitly served with correct MIME",
+    "Live custody still returns 501; private server/config/data remain unserved",
+    "Invalid HTTP saved state stops startup and leaves original bytes untouched"
+  ]
+}

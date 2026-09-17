@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "pda-derivation",
+      "surface": "Canonical V1/V2 PDA derivation and account binding",
+      "status": "proven",
+      "evidence": [
+        "packages/escrow-sdk/index.mjs",
+        "tests/escrow-sdk.test.mjs",
+        "tests/account-projection.test.mjs"
+      ],
+      "notes": "Pure derivation and binding checks are covered locally; this is not proof of a deployed program or live accounts."
+    },
+    {
+      "id": "sbpf-v2-execution",
+      "surface": "SBPF v2 compatibility lifecycle execution",
+      "status": "proven",
+      "evidence": [
+        "scripts/run-custody-sbf-tests.mjs",
+        "packages/custody-contracts/program/tests/lifecycle/src/lib.rs",
+        "docs/IMPLEMENTATION-STATUS.md"
+      ],
+      "notes": "The compatibility artifact reaches the program through the pinned local ProgramTest harness and passes the six lifecycle cases."
+    },
+    {
+      "id": "custody-property-tests",
+      "surface": "Deterministic custody property-style regression coverage",
+      "status": "proven",
+      "evidence": [
+        "packages/custody-contracts/program/programs/escrow-global/src/lib.rs",
+        "docs/IMPLEMENTATION-STATUS.md"
+      ],
+      "notes": "Fixed-seed tests cover fee arithmetic, deadline boundaries, and initialization role/hash/mint constraints; they are not coverage-guided fuzzing or an independent audit."
+    },
+    {
+      "id": "sbpf-v3-execution",
+      "surface": "Fresh SBPF v3 release-artifact lifecycle execution",
+      "status": "probe-blocked",
+      "evidence": [
+        "scripts/run-custody-sbf-tests.mjs",
+        "scripts/probe-custody-release-sbf.mjs",
+        "packages/custody-contracts/program/README.md",
+        "RELEASE.json"
+      ],
+      "notes": "The fresh v3 artifact is rejected before instruction execution with UnsupportedProgramId by the pinned Solana 2.3.1 ProgramTest loader. A compatible validator/runtime probe is required before release approval."
+    },
+    {
+      "id": "live-custody-api",
+      "surface": "Live escrow funding API",
+      "status": "intentionally-disabled",
+      "evidence": [
+        "server.mjs",
+        "tests/auth-feature-gates.test.mjs",
+        "tests/payments-api.test.mjs"
+      ],
+      "notes": "The route returns HTTP 501 and the server only accepts ESCROW_MODE=sandbox; it cannot sign, broadcast, or move real funds."
+    },
+    {
+      "id": "deployment-authority",
+      "surface": "Approved deployment identity, network manifest, and live cluster",
+      "status": "intentionally-disabled",
+      "evidence": [
+        "scripts/verify-custody-deployment-manifest.mjs",
+        "scripts/verify-custody-onchain.mjs",
+        "tests/custody-deployment-manifest.test.mjs",
+        "docs/PRODUCTION-ROADMAP.md"
+      ],
+      "notes": "The read-only on-chain verifier can prove a supplied manifest with an Ed25519 approval matching a separately supplied trusted approver key against finalized RPC evidence, but no deployment manifest, funded authority, approved RPC, or release approval was supplied; it fails closed rather than inventing one."
+    }
+  ]
+}

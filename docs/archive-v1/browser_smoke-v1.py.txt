@@ -1,0 +1,158 @@
+"""Optional UI smoke tests. Requires Python playwright and a Chromium installation.
+Renders the self-contained HTML directly, so no external site/network is required.
+The server API is tested separately by node:test. This is NOT a chain audit.
+"""
+from pathlib import Path
+import json
+import os
+import shutil
+from playwright.sync_api import sync_playwright, expect
+
+ROOT = Path(__file__).resolve().parents[1]
+checks = []
+
+def record(label):
+    checks.append(label)
+    print('PASS', label)
+
+with sync_playwright() as p:
+    executable = os.environ.get('CHROMIUM') or shutil.which('chromium') or shutil.which('chromium-browser')
+    browser = p.chromium.launch(executable_path=executable, headless=True)
+    page = browser.new_page(viewport={'width': 1440, 'height': 1050}, device_scale_factor=1)
+    page.set_default_timeout(5000)
+    errors = []
+    page.on('pageerror', lambda err: errors.append(str(err)))
+    page.set_content((ROOT / 'pact-preview.html').read_text(), wait_until='load')
+
+    def capture(name):
+        page.evaluate("document.documentElement.style.scrollBehavior='auto'; window.scrollTo({top:0,behavior:'instant'}); document.querySelector('#toast').className=''")
+        page.wait_for_timeout(100)
+        page.screenshot(path=str(ROOT/'docs'/name), full_page=True)
+
+    expect(page.locator('.service-card')).to_have_count(8)
+    record('Marketplace renders 8 clearly labeled sample services')
+    page.locator('.hero-search input[name=query]').fill('automation')
+    page.locator('.hero-search button').click()
+    expect(page.locator('.service-card')).to_have_count(2)
+    record('Service search filters the catalog')
+    page.evaluate("location.hash='#/service/web'")
+    page.locator('[data-action=package][data-index="1"]').click()
+    expect(page.locator('.price-large')).to_contain_text('900.00')
+    capture('service-detail.png')
+    record('Package selector updates scope and price')
+
+    def dialog(): return page.locator('#pact-dialog')
+    def submit():
+        dialog().locator('button[type=submit]').click()
+        page.locator('#pact-dialog').wait_for(state='detached')
+    def consent(): dialog().locator('[name=consent]').check()
+    def switch(identity): page.locator('#identity-picker').select_option(identity)
+    def ms_action(action, index=0): page.locator('.milestone').nth(index).locator('[data-action='+action+']').click()
+
+    page.locator('[data-action=checkout]').click()
+    dialog().locator('[name=requirements]').fill('Build a landing page from our approved brand guidelines and supplied copy. The contact form must pass the agreed tests and all source files must be handed over.')
+    consent(); submit()
+    expect(page.locator('h1')).to_contain_text('Build a website')
+    deal_hash = page.evaluate('location.hash')
+    record('Checkout creates an unfunded agreement and preserves package snapshot')
+    switch('maya'); page.locator('[data-action=accept-order]').click(); consent(); submit()
+    switch('buyer'); page.locator('[data-action=fund-order]').click(); consent(); submit()
+    expect(page.locator('.milestone.funded')).to_have_count(3)
+    record('Seller acceptance gates buyer funding of all three milestones')
+    switch('maya'); ms_action('delivery', 0)
+    dialog().locator('[name=text]').fill('The complete direction document and approved page structure are provided, with each acceptance requirement mapped to a delivery step.')
+    dialog().locator('[name=evidence]').fill('Sample delivery reference; no external file is fetched.')
+    submit()
+    switch('buyer'); ms_action('approve', 0)
+    dialog().locator('[name=criteriaAccepted]').check(); submit()
+    expect(page.locator('.milestone').nth(0)).to_have_class('milestone released')
+    record('Buyer accepts submitted work and releases only the selected milestone')
+    switch('maya'); ms_action('terms', 1)
+    dialog().locator('[name=kind]').select_option('amend')
+    dialog().locator('[name=amount]').fill('300')
+    dialog().locator('[name=scope]').fill('Deliver three responsive sections and one validated contact form with editable source files, using the existing brand guidelines.')
+    dialog().locator('[name=days]').fill('5'); submit()
+    expect(page.locator('.milestone').nth(1)).to_contain_text('Needs both parties')
+    switch('buyer'); ms_action('accept-terms', 1); consent(); submit()
+    expect(page.locator('.milestone').nth(1).locator('.milestone-money')).to_contain_text('300.00')
+    expect(page.locator('.milestone').nth(1)).to_contain_text('amended terms')
+    record('A bilateral amendment refunds excess principal and preserves a revised locked balance')
+    ms_action('dispute', 2)
+    expect(dialog()).to_contain_text('13.50 demo USDC')
+    dialog().locator('[name=reason]').fill('The final handover milestone is missing the promised documentation and the seller has not supplied an agreed delivery plan.')
+    dialog().locator('[name=acknowledgeFee]').check(); submit()
+    expect(page.locator('.milestone').nth(2)).to_have_class('milestone disputed')
+    record('A paid dispute freezes one milestone and displays the exact initiator charge')
+    capture('deal-room.png')
+    switch('reviewer'); ms_action('resolve', 2)
+    dialog().locator('[name=decision]').select_option('resolve_refund')
+    dialog().locator('[name=reason]').fill('The handover evidence does not meet the agreed scope. Refund this milestone to the original buyer under the accepted rules.')
+    consent(); submit()
+    expect(page.locator('.milestone').nth(2)).to_have_class('milestone refunded')
+    record('Reviewer can refund the disputed milestone without choosing a wallet or split')
+    switch('maya'); ms_action('delivery', 1)
+    dialog().locator('[name=text]').fill('The revised three-section website and validated form are complete with the promised editable source files and handover notes.'); submit()
+    switch('buyer'); ms_action('approve', 1); dialog().locator('[name=criteriaAccepted]').check(); submit()
+    page.locator('[data-action=review]').click()
+    dialog().locator('[name=text]').fill('The revised scope was delivered clearly and the milestone process kept expectations aligned.'); submit()
+    record('A partially refunded but paid completed deal enables exactly one buyer review')
+    page.locator('[data-action=deal-tab][data-value=conversation]').click()
+    page.locator('.chat-form textarea').fill('<img src=x onerror="window.PACT_XSS=true"> A plain text evidence note.')
+    page.locator('.chat-form button').click()
+    expect(page.locator('.message')).to_have_count(1)
+    assert page.evaluate('window.PACT_XSS === undefined')
+    expect(page.locator('.msg-body img')).to_have_count(0)
+    record('Conversation evidence is escaped as text, not executable HTML')
+
+    switch('maya'); page.evaluate("location.hash='#/studio'")
+    page.locator('[data-action=create-listing]').click()
+    dialog().locator('[name=title]').fill('Design an accessible onboarding flow for your product')
+    dialog().locator('[name=category]').select_option('Design')
+    dialog().locator('[name=description]').fill('Design an onboarding flow with mobile layouts and an editable component library for your new product.')
+    dialog().locator('[name=criteria]').fill('Deliver three editable onboarding screens\nProvide desktop and mobile layouts')
+    for i in range(3):
+        dialog().locator(f'[name=scope{i}]').fill(f'Package {i+1}: agreed editable design screens with component handover and documented responsive behavior.')
+    submit()
+    expect(page.locator('.studio-row').first).to_contain_text('pending')
+    record('Seller can submit a new three-package service for review')
+    capture('seller-studio.png')
+    switch('reviewer'); page.evaluate("location.hash='#/resolution'")
+    page.locator('[data-action=moderate-listing][data-decision=published]').click()
+    expect(page.locator('[data-action=moderate-listing]')).to_have_count(0)
+    capture('resolution-center.png')
+    page.evaluate("location.hash='#/explore'")
+    expect(page.locator('.service-card')).to_have_count(9)
+    record('Moderator approval makes the service discoverable without altering existing deals')
+
+    switch('buyer'); page.evaluate("location.hash='#/briefs'")
+    page.locator('[data-action=post-brief]').click()
+    dialog().locator('[name=title]').fill('Build a documented workflow for our customer support team')
+    dialog().locator('[name=category]').select_option('AI & automation')
+    dialog().locator('[name=budget]').fill('400')
+    dialog().locator('[name=description]').fill('Build one documented support routing workflow connecting our agreed tools, with a human approval step, a sample test run, and a clear handover guide.')
+    submit()
+    switch('samir'); page.locator('.brief-card').first.locator('[data-action=quote-brief]').click()
+    dialog().locator('[name=scope]').fill('Deliver one workflow with a manual approval step, error handling, ten sample tests, and a documented export and handover guide.')
+    submit()
+    switch('buyer'); page.locator('.brief-card').first.locator('[data-action=use-quote]').click()
+    consent(); submit()
+    expect(page.locator('h1')).to_contain_text('documented workflow')
+    expect(page.locator('.panel.soft')).to_contain_text('Waiting for seller confirmation')
+    record('Project brief → seller offer → buyer-selected private escrow agreement')
+
+    for h in ['#/explore','#/orders','#/studio','#/briefs','#/resolution','#/rules',deal_hash]:
+        page.evaluate('(hash)=>location.hash=hash',h)
+        page.wait_for_timeout(70)
+        page.set_viewport_size({'width':390,'height':844})
+        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), h
+    record('Major screens fit a 390-pixel mobile viewport without horizontal overflow')
+    page.evaluate("location.hash='#/orders'")
+    capture('orders-mobile.png')
+    page.set_viewport_size({'width':1440,'height':1050})
+    capture('orders-dashboard.png')
+    assert not errors, errors
+    record('No browser JavaScript errors during tested workflows')
+    browser.close()
+report={'suite':'Chromium standalone UI smoke tests','passed':len(checks),'checks':checks,'method':'Self-contained preview rendered directly using set_content. Server APIs tested separately; no live-chain integration.','javascriptErrors':errors}
+(ROOT/'docs/browser-test-results.json').write_text(json.dumps(report,indent=2))
+print(json.dumps({'passed':len(checks),'errors':errors}))

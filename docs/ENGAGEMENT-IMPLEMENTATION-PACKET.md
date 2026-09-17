@@ -1,0 +1,39 @@
+# Admin experience and visitor engagement implementation packet
+
+Scope: authenticated admin UX plus real first-party traffic measurement and persistent visitor chat. The escrow marketplace and its sample financial data remain a sandbox. Never expose `/api/state`, wallet, or command routes through the public reverse proxy. Existing admin session and CSRF requirements remain mandatory.
+
+## Shared HTTP contract
+
+All responses JSON except static files; all engagement responses no-store. Errors `{error,code}` with appropriate 400/401/403/404/409/413/429/503 status. All POSTs application/json. Public mutations require exactly an allowed public Origin (loopback origin allowed in tests). Admin endpoints require existing admin session, POSTs also require existing X-CSRF-Token + csrf cookie. Do not accept arbitrary client actor IDs.
+
+Public chat uses `__Host-eg_chat` opaque Secure HttpOnly SameSite=Strict Path=/ cookie, created only when chat is opened via GET session; persistence 90 days. Store only a SHA-256 token hash in SQLite, not the token. Visitor CSRF returned from session and bound to token using HMAC with persisted server secret. A visitor must provide a display name and contact email to send a message; this is unverified contact data, not identity proof. Never use conversation IDs as visitor authorization.
+
+- `GET /api/chat/session`: `{conversation:null|Thread,messages:Message[],csrfToken,retentionDays:90}`. Read existing conversation via cookie or set a fresh token cookie; no empty conversation until first message. Last 200 messages ascending, public messages only (no internal notes).
+- `POST /api/chat/messages`: `{body,clientId,displayName,email}`, X-CSRF-Token required. body 1–2000 chars, displayName 1–60 required, email 3–254 characters with basic format validation, clientId 8–100 safe ASCII. Email is normalized to lowercase and shown only in authenticated admin thread views; visitor responses omit it. Creates thread on first send. Returns `{conversation:Thread,messages:Message[]}`. Idempotency per conversation+sender+clientId; reject conflicting retries. Closed thread reopens on new visitor message. Rate limit persistent by cookie/session and trusted source; no raw IP persisted.
+- `POST /api/analytics/event`: `{sessionId,eventId,path,referrer,device}`; UUID-like sessionId/eventId from sessionStorage, device desktop/mobile/tablet. No cookies or IP stored for analytics. Origin required. Server sanitizes path to known page groups (drop IDs, query, hash query); referrer hostname only; unknown source label Direct. Country comes ONLY from trusted proxy's overwritten `X-Escrow-Country` header, validate ISO 2-char (ZZ fallback). IP used only transiently for rate-limiting hashed key. Daily HMAC session hash for approximate unique daily sessions, no fingerprinting. EventId dedupe, ignore bots via UA and DNT/Sec-GPC. Returns `{ok:true}` or 202. Keep 90 days; no fictional data.
+- `GET /api/admin/traffic?days=7|30|90`: `{rangeDays,generatedAt,totalViews,dailyVisitors,activeNow,countries:[{code,name,views,visitors}],trend:[{date,views,visitors}],pages:[{path,views}],referrers:[{host,views}],devices:[{name,views}],collectionStartedAt:null|ISO,geo:{status:'ready'|'unavailable',source:'DB-IP Lite',unknownViews,notice},retentionDays:90}`. `dailyVisitors` is the sum of daily unique sessions, not cross-day people. zero-filled dates through today UTC; no arbitrary growth percentages. Geo status ready only when trusted lookup is actually configured, otherwise unavailable/Unknown. Attribute DB-IP with a link.
+- `GET /api/admin/chat?status=all|open|closed&q=&offset=0&limit=40`: `{threads:Thread[],total,unreadCount,openCount,offset,limit}`. Search displayName and preview safely; cap query/limit. No token hashes in any response.
+- `GET /api/admin/chat/:id`: `{conversation:Thread,messages:Message[]}` latest 200 ascending. Read does not silently mutate read state.
+- `POST /api/admin/chat/:id/read`: `{throughId:number}`; marks visitor messages read ONLY through explicitly displayed message ID, avoids races. Returns `{ok:true}`.
+- `POST /api/admin/chat/:id/reply`: `{body,clientId}` idempotent, returns thread/messages; actual authenticated admin sends, never automated AI impersonation.
+- `POST /api/admin/chat/:id/status`: `{status:'open'|'closed'}` returns `{conversation:Thread}`. Closed threads may be reopened.
+
+Thread fields: visitor `{id,displayName,status,createdAt,updatedAt,lastMessage,unreadCount,messageCount}`; authenticated admin `{... ,contactEmail}`. Message fields: `{id:number,sender:'visitor'|'admin',body,createdAt,clientId}`. Contact email is retained for 90 days with the conversation and is visible only to authorized operators; no automated email delivery is implied.
+
+## Persistence and trust
+
+Use Node >=22.13 built-in node:sqlite, WAL, prepared statements, foreign keys, transactions, idempotent retries and pruning. `ENGAGEMENT_DB_FILE` under service writable data directory, secret generated/stored alongside DB if not environment-provided. Keep messages max 2000 chars; cap messages/thread and daily creates/events with 429 and actionable error. Do not delete current sandbox state or journal. All database errors fail closed; no fabricated successful writes. Tests use temp DB paths; missing/corrupt schema must not silently replace data.
+
+Nginx must expose ONLY `/api/chat/session`, `/api/chat/messages`, `/api/analytics/event` on www/apex; proxy with loopback Host. Admin prefixes remain authenticated. Trusted source headers ONLY from Nginx replacing incoming values, never append user X-Forwarded-For. Country lookup offline DB-IP MMDB; proxy protocol real IP must be evidenced before calling analytics accurate. No visitor IP sent to third-party geolocation API. Root admin URL serves admin HTML; public `/admin` redirects to admin subdomain. Public blog can be proxied read-only on website but keep sandbox support endpoints closed unless separately secured.
+
+## UI acceptance
+
+Navy/teal editorial operations UI, responsive navigation with visible sign-out on mobile, icons, crisp metric widgets, accessible SVG trend + table equivalents, country bars, device/referrer lists, actionable workloads, quick actions. Separate real traffic/chat from sandbox fixtures. Functional date filters, empty/error/retry/loading states, predictable refresh and keyboard/focus semantics.
+
+Replace all blocking prompt/confirm with accessible in-page dialogs/forms for moderation, flags/notes, support, blog deletion. Do not swallow command errors or discard unsaved text. Unknown hashes fallback Overview. Correct www links, no misleading settings claiming to control the static marketplace.
+
+Chat admin tab: searchable paginated thread list, unread badge, status filters, transcript, preserved draft per thread, send states/errors, read-through marker, close/reopen, poll without stealing focus or dropping draft. Visitor widget: isolated styles, safe mobile position above bottom navigation, accessible labelled chat dialog, open/close, privacy text, required display name and contact email, persisted history across refresh, poll while visible, send retry/idempotency, no fake online promise, no credentials/funds/seed phrases requests. Default bot reply none. Escape all user content. Analytics script sends pagegroup events on initial load/hashchange, respects DNT/GPC, sessionStorage only; no query strings or per-deal routes leaked.
+
+## Ownership
+
+Backend lane: server.mjs, src/engagement/*, tests/engagement*.test.mjs. Frontend lane: public/admin.html, public/admin.mjs, public/admin.css, public/visitor-tools.mjs, public/visitor-tools.css. Lead: deployment/backup/configuration, docs, integration review, browser QA and targeted integration fixes. Preserve unrelated pre-existing dirty files; do not commit or deploy them by accident.

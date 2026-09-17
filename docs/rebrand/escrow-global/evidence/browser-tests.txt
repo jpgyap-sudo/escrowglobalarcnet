@@ -1,0 +1,8 @@
+
+> escrow-global-settlement-sandbox@0.3.0 test:browser
+> python tests/browser_universal.py
+
+{
+  "passed": 44,
+  "failed": 0
+}

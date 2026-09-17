@@ -1,0 +1,3 @@
+2026-09-13: npm run test:qr
+Python qrcode 8.2 was installed in the active QA environment for this run.
+18 QR matrices match python-qrcode exactly, including Unicode and payment-URI samples. No live transaction.

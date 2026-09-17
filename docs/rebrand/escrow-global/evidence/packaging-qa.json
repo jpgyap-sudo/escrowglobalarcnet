@@ -1,0 +1,23 @@
+{
+  "passed": 6,
+  "checks": [
+    "Primary and legacy-filename previews byte-identical; standalone bundle below 1.5 MiB",
+    "Both native HTML bundles match the primary build except for exactly one payment-disable flag",
+    "Every referenced CSS custom property is defined",
+    "Eight primary text/control/focus palette pairs meet their targeted contrast thresholds",
+    "Network-blocked offline pages render art; keyboard skip/focus/Escape verified at 1440,390 and 640 CSS px (2x scale)",
+    "Storage read and write failures retain an explicit usable memory-only demo"
+  ],
+  "bundleBytes": 977212,
+  "contrastRatios": {
+    "body on white": 11.5,
+    "secondary on page": 5.6,
+    "teal links on white": 4.75,
+    "navy on mint": 12.76,
+    "warning text": 5.37,
+    "danger text": 6.28,
+    "control border": 3.26,
+    "focus ring": 7.35
+  },
+  "limitations": "Targeted checks, not a full WCAG audit or native device/SDK build; 640 CSS px at 2x scale is reflow emulation."
+}
