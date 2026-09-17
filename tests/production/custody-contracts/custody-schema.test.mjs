@@ -1,0 +1,62 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const migrationPath = path.resolve(here, '../../../db/migrations/001_escrow_custody.sql');
+const migration = fs.readFileSync(migrationPath, 'utf8');
+
+test('production custody schema has immutable chain facts and replay-safe operation keys', () => {
+  assert.match(migration, /CREATE TABLE custody_deployments/);
+  assert.match(migration, /V1 stores its single-vault economics on the agreement itself/);
+  assert.match(migration, /vault_address bytea CHECK \(vault_address IS NULL OR octet_length\(vault_address\) = 32\)/);
+  assert.match(migration, /protocol_version = 'v1' AND principal IS NOT NULL/);
+  assert.match(migration, /state_revision numeric\(20, 0\) NOT NULL CHECK \(state_revision >= 0 AND state_revision <= 18446744073709551615\)/);
+  assert.match(migration, /protocol_version = 'v1' AND state IN \('Funded', 'Submitted', 'Disputed', 'Approved', 'CommonGround', 'SellerPaid', 'Refunded', 'Closed'\)/);
+  assert.match(migration, /UNIQUE \(network, program_id, genesis_hash\)/);
+  assert.match(migration, /deployment_config_address bytea NOT NULL/);
+  assert.match(migration, /upgrade_authority bytea/);
+  assert.match(migration, /UNIQUE \(network, program_id, deployment_config_address\)/);
+  assert.match(migration, /CREATE TABLE custody_mint_admissions/);
+  assert.match(migration, /CREATE TRIGGER custody_agreement_admission/);
+  assert.match(migration, /agreement fee recipient differs from deployment policy/);
+  assert.match(migration, /CREATE TABLE custody_operations/);
+  assert.match(migration, /operation_id text PRIMARY KEY/);
+  assert.match(migration, /state IN \('prepared', 'signed', 'relaying', 'submitted', 'confirmed', 'finalized', 'unknown', 'failed', 'expired', 'cancelled'\)/);
+  assert.match(migration, /request jsonb NOT NULL/);
+  assert.match(migration, /attempt jsonb NOT NULL/);
+  assert.match(migration, /CREATE TABLE custody_attempts/);
+  assert.match(migration, /UNIQUE \(signature\)/);
+  assert.match(migration, /CREATE TABLE custody_chain_events/);
+  assert.match(migration, /deployment_id text NOT NULL REFERENCES custody_deployments \(deployment_id\)/);
+  assert.match(migration, /program_id bytea NOT NULL CHECK \(octet_length\(program_id\) = 32\)/);
+  assert.match(migration, /event_index integer NOT NULL CHECK \(event_index >= 0 AND event_index < 64\)/);
+  assert.match(migration, /PRIMARY KEY \(deployment_id, network, program_id, signature, instruction_index, event_index\)/);
+  assert.match(migration, /CREATE INDEX custody_events_slot_idx ON custody_chain_events \(deployment_id, network, program_id, slot\)/);
+  assert.match(migration, /CREATE TRIGGER custody_chain_events_deployment_binding/);
+  assert.match(migration, /CREATE TRIGGER custody_terms_append_only/);
+  assert.match(migration, /CREATE TRIGGER custody_chain_events_append_only/);
+  assert.match(migration, /CREATE TRIGGER custody_agreement_binding_immutable/);
+  assert.match(migration, /CREATE TRIGGER custody_milestone_binding_immutable/);
+  assert.match(migration, /CREATE TABLE custody_indexer_cursors/);
+  assert.match(migration, /exhausted boolean NOT NULL DEFAULT false/);
+  assert.match(migration, /PRIMARY KEY \(network, deployment_id, address\)/);
+  assert.match(migration, /CREATE TRIGGER custody_indexer_cursor_deployment_network/);
+  assert.match(migration, /indexer cursor network differs from deployment network/);
+  assert.match(migration, /custody agreement projection cannot move backward/);
+  assert.match(migration, /custody milestone projection cannot move backward/);
+  assert.match(migration, /NEW\.agreement_id IS DISTINCT FROM OLD\.agreement_id/);
+  assert.match(migration, /octet_length\(evidence_digest\) = 32/);
+  assert.doesNotMatch(migration, /private_key|secret_key|seed_phrase|raw_bytes/i);
+});
+
+test('production custody schema bounds Solana token units and milestone cardinality', () => {
+  assert.match(migration, /principal numeric\(20, 0\)/);
+  assert.match(migration, /18446744073709551615/);
+  assert.match(migration, /milestone_index smallint NOT NULL CHECK \(milestone_index >= 0 AND milestone_index <= 15\)/);
+  assert.match(migration, /CHECK \(principal \+ fee_reserve = expected_total\)/);
+  assert.match(migration, /CHECK \(seller_entitlement \+ fee_entitlement \+ buyer_entitlement <= vault_amount\)/);
+  assert.match(migration, /CHECK \(state IN \('Funded', 'Submitted', 'Disputed', 'Approved', 'SellerPaid', 'Refunded', 'Closed'\)\)/);
+});

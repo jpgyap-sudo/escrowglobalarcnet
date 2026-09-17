@@ -1,0 +1,34 @@
+[package]
+name = "escrow-global"
+version = "0.1.0"
+description = "Escrow Global constrained Solana custody program"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "escrow_global"
+
+[features]
+default = []
+test-mints = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+[dependencies]
+anchor-lang = { version = "0.31.1" }
+# Keep the deployable program on the Solana 2.3 syscall family required by
+# the current SBPF v3 platform-tools release. This remains a Solana 2.x
+# compatibility update; Anchor itself stays pinned at 0.31.1 for this slice.
+solana-program = { version = "=2.3.0" }
+# Force the SBPF v3 syscall crate into the lockfile as well; Solana 2.3's
+# manifest still expresses this target dependency as a compatible 2.2.x
+# range, so an explicit pin prevents Cargo from selecting the older ABI.
+solana-define-syscall = { version = "=2.3.0" }
+# Anchor 0.31's `token::` init constraint emits a compile-time branch for
+# Token-2022 account sizing. The program still uses `Program<Token>` and
+# rejects Token-2022 mints/accounts at runtime; this feature is only needed so
+# the generated legacy-token account validation compiles.
+anchor-spl = { version = "0.31.1", default-features = false, features = ["token", "token_2022"] }

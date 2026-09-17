@@ -1,0 +1,100 @@
+{
+  "name": "Escrow Global Settlement",
+  "version": "0.3.0",
+  "checkedAt": "2026-09-14",
+  "escrowMode": "sandbox",
+  "liveCustodyImplemented": false,
+  "productionAuthenticationImplemented": false,
+  "nodeTests": {
+    "passed": 449,
+    "failed": 0
+  },
+  "browserChecks": {
+    "passed": 81,
+    "failed": 0
+  },
+  "staticPreviewDeployment": {
+    "provider": "github-pages",
+    "url": "https://jpgyap-sudo.github.io/escrow-global/",
+    "commit": "e4832bc40333a166e5419ef1a86a77ae8e4dcc53",
+    "workflowRun": "https://github.com/jpgyap-sudo/escrow-global/actions/runs/34792536624",
+    "status": "historical-snapshot",
+    "automaticWorkflowPresent": false,
+    "sandboxOnly": true
+  },
+  "qrReferenceComparisons": 18,
+  "accountSessionFoundationImplemented": true,
+  "operationJournalImplemented": true,
+  "unsignedCustodyIntentImplemented": true,
+  "custodyReadinessGateboardImplemented": true,
+  "guidebookWalkthroughs": 23,
+  "custodyProgramVerticalSlice": {
+    "implemented": true,
+    "anchorVersion": "0.31.1",
+    "build": "fresh SBPF v3 build verified locally with platform-tools v1.53; Solana 2.3 syscall family pinned",
+    "unitTestsPassed": 11,
+    "instructionCount": 46,
+    "eventCount": 29,
+    "deployed": false,
+    "audited": false,
+    "liveEndpointEnabled": false,
+    "artifactFreshByTimestamp": true
+  },
+  "mobile": {
+    "android": "source-template-not-compiled-or-device-tested",
+    "ios": "source-template-not-compiled-or-device-tested; historical syntax parse is not a build"
+  },
+  "providers": {
+    "jupiter": "web-adapter-mock-tested-no-live-swap",
+    "moonpay": "signed-url-ownership-api-tested-no-provider-purchase",
+    "transak": "external-link-only",
+    "jupiterSpend": "guides-and-official-links-only"
+  },
+  "schemaVersion": 3,
+  "settlementAssets": [
+    "USDC",
+    "USDT"
+  ],
+  "responsiveAssetRouteChecks": {
+    "passed": 216,
+    "failed": 0
+  },
+  "storageMigrationChecks": {
+    "passed": 10,
+    "failed": 0
+  },
+  "offlinePackagingChecks": {
+    "passed": 6,
+    "failed": 0
+  },
+  "httpLostResponseRetryChecks": {
+    "passed": 1,
+    "failed": 0
+  },
+  "standalonePreviewBytes": 964844,
+  "verificationReport": "docs/rebrand/escrow-global/verification-report.md",
+  "custodyReconciliationBoundaryImplemented": true,
+  "agreementReadinessPreflightImplemented": true,
+  "operatorReadinessSurfaceImplemented": true,
+  "staticAssetRouteRegressionImplemented": true,
+  "legacySplDependencyBoundaryImplemented": true,
+  "programTestDependencyIsolationImplemented": true,
+  "lifecycleLockfilePresent": true,
+  "externalWalletTransactionBoundaryImplemented": true,
+  "submissionRpcTransportImplemented": true,
+  "actionCenterImplemented": true,
+  "boundedChainTimeDeadlinesImplemented": true,
+  "rightsEvidenceReceiptUxImplemented": true,
+  "settlementSimulatorImplemented": true,
+  "custodyVerification": {
+    "productionTestsPassed": 18,
+    "targetedAccountEventSchemaProjectionTestsPassed": 50,
+    "fullNodeTestsPassed": 449,
+    "nativeRustTestsPassed": 11,
+    "sbfFresh": true,
+    "programTestSourceRuntimeVerified": true,
+    "programTestReleaseArtifactRuntimeVerified": false,
+    "programTestRuntimeVerified": false,
+    "releaseApprovalRequired": true
+  }
+}

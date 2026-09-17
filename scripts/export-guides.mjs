@@ -1,0 +1,5 @@
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
+import {GUIDES,CHECKED_AT} from '../public/learn.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'docs/tutorials');fs.mkdirSync(out,{recursive:true});
+for(const g of GUIDES){const text=`# ${g.title}\n\n${g.tag} · ${g.time} · External references checked ${CHECKED_AT}.\n\n${g.intro}\n\n${g.steps.map(([title,body],i)=>`## ${i+1}. ${title}\n\n${body}`).join('\n\n')}\n\n## Important limitation\n\n${g.note}\n\n## References\n\n${g.sources.length?g.sources.map(([label,url])=>`- ${label}: ${url}`).join('\n'):'This guide describes the Escrow Global sandbox, not a live escrow service.'}\n`;fs.writeFileSync(path.join(out,g.id+'.md'),text);}
+fs.writeFileSync(path.join(out,'README.md'),'# Escrow Global Guidebook\n\nThese guides also appear inside the app. Provider steps and availability should be rechecked before acting. Never upload identity documents or wallet secrets to Escrow Global.\n\n'+GUIDES.map(g=>`- [${g.title}](${g.id}.md)`).join('\n')+'\n');console.log(`Exported ${GUIDES.length} guides.`);

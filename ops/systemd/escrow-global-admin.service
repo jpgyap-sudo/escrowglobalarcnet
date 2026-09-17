@@ -1,0 +1,54 @@
+[Unit]
+Description=Escrow Global Node22 Admin and SQLite Visitor Engagement Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=escrow-global-admin
+Group=escrow-global-admin
+# Prerequisite: /opt/escrow-global-admin/data must exist and be owned by
+# escrow-global-admin:escrow-global-admin with mode 0700 (or 0750 if a
+# trusted group needs read access). This directory is the ONLY writable
+# path and MUST be a real directory on persistent storage, not a symlink
+# into a release, so SQLite WAL and visitor engagement data survive
+# deployments. Releases under /opt/escrow-global-admin/releases/<SHA> are
+# root-owned, read-only, and referenced via the /opt/escrow-global-admin/current
+# symlink; never place mutable state inside a release.
+WorkingDirectory=/opt/escrow-global-admin/current
+EnvironmentFile=/etc/escrow-global-admin.env
+# /etc/escrow-global-admin.env must be root:root mode 0600. systemd reads
+# it as PID 1 before dropping privileges, so the service user does not
+# need read access. It supplies the listen address (127.0.0.1:4174) and
+# any other runtime configuration.
+Environment=NODE_OPTIONS=--max-old-space-size=512
+ExecStart=/usr/bin/node /opt/escrow-global-admin/current/server.mjs
+Restart=on-failure
+RestartSec=3
+UMask=0077
+
+# Resource limits
+MemoryMax=768M
+TasksMax=128
+LimitNOFILE=8192
+
+# Sandboxing / hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/escrow-global-admin/data
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictSUIDSGID=true
+
+# Node.js requires writable+executable memory for V8 JIT, so
+# MemoryDenyWriteExecute MUST remain unset. Do not enable it.
+# Network access is intentionally unrestricted so DNS resolution and
+# outbound connections continue to work; the service binds only to
+# 127.0.0.1:4174 as configured via EnvironmentFile. Do not add
+# IPAddressAllow/IPAddressDeny or RestrictAddressFamilies here, as that
+# would break DNS and other services.
+
+[Install]
+WantedBy=multi-user.target

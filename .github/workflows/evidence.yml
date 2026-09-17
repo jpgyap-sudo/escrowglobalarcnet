@@ -1,0 +1,43 @@
+name: Escrow Global evidence
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm test -- --test-concurrency=1
+      # The production custody suite is nested under tests/production and is
+      # therefore not included by the root-level tests/*.test.mjs glob.
+      - run: npm run test:production:custody
+      - run: npm run build:custody:abi
+      - run: npm run verify:custody:abi:source
+      - name: Install Rust lint components
+        run: rustup component add rustfmt clippy
+      - name: Verify custody Rust lint
+        working-directory: packages/custody-contracts/program
+        run: |
+          cargo fmt -- --check
+          cargo clippy --locked --lib -- -D warnings
+      - run: npm run verify:capabilities
+      - run: npm run verify:manifest
+      - run: git diff --exit-code -- docs/capabilities.md MANIFEST.sha256
+      - run: npm run build:evidence
+      - uses: actions/upload-artifact@v4
+        with:
+          name: escrow-global-release-evidence
+          path: dist/evidence/*.json
+          if-no-files-found: error

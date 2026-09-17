@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "policy": { "assetUnits": "token-base-units", "feeBps": 300, "rounding": "floor-per-milestone" },
+  "vectors": [
+    {
+      "id": "single-450",
+      "input": {
+        "agreementId": "deal-reference-450",
+        "termsHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "termsVersion": 1,
+        "asset": "USDC",
+        "status": "accepted",
+        "acceptedAt": 1700000000000,
+        "fundedAt": null,
+        "cancelled": false,
+        "feeBps": 300,
+        "milestones": [{ "id": "m1", "principal": "450000000" }]
+      },
+      "expected": {
+        "totalPrincipal": "450000000",
+        "totalReserve": "13500000",
+        "total": "463500000"
+      }
+    },
+    {
+      "id": "single-1000-usdt",
+      "input": {
+        "agreementId": "deal-reference-1000",
+        "termsHash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "termsVersion": 1,
+        "asset": "USDT",
+        "status": "accepted",
+        "acceptedAt": 1700000000000,
+        "fundedAt": null,
+        "cancelled": false,
+        "feeBps": 300,
+        "milestones": [{ "id": "m1", "principal": "1000000000" }]
+      },
+      "expected": {
+        "totalPrincipal": "1000000000",
+        "totalReserve": "30000000",
+        "total": "1030000000"
+      }
+    },
+    {
+      "id": "multiple-rounds-independently",
+      "input": {
+        "agreementId": "deal-reference-rounding",
+        "termsHash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "termsVersion": 2,
+        "asset": "USDC",
+        "status": "accepted",
+        "acceptedAt": 1700000000000,
+        "fundedAt": null,
+        "cancelled": false,
+        "feeBps": 300,
+        "milestones": [
+          { "id": "m1", "principal": "1" },
+          { "id": "m2", "principal": "333333" },
+          { "id": "m3", "principal": "100000000" }
+        ]
+      },
+      "expected": {
+        "totalPrincipal": "100333334",
+        "totalReserve": "3009999",
+        "total": "103343333"
+      }
+    }
+  ]
+}

@@ -1,0 +1,835 @@
+{
+  "version": 16,
+  "mode": "sandbox",
+  "createdAt": 1788220800000,
+  "users": [
+    {
+      "id": "buyer",
+      "name": "Alex Morgan",
+      "initials": "AM",
+      "role": "buyer",
+      "bio": "Building an independent business.",
+      "wallet": "DEMO_BUYER_NOT_A_REAL_WALLET",
+      "balance": "23425000000"
+    },
+    {
+      "id": "maya",
+      "name": "Maya Chen",
+      "initials": "MC",
+      "role": "seller",
+      "bio": "Product designer and frontend developer.",
+      "wallet": "DEMO_MAYA_NOT_A_REAL_WALLET",
+      "balance": "25180000000"
+    },
+    {
+      "id": "samir",
+      "name": "Samir Patel",
+      "initials": "SP",
+      "role": "seller",
+      "bio": "Practical AI and workflow automation.",
+      "wallet": "DEMO_SAMIR_NOT_A_REAL_WALLET",
+      "balance": "25000000000"
+    },
+    {
+      "id": "noa",
+      "name": "Noa Rivera",
+      "initials": "NR",
+      "role": "seller",
+      "bio": "Brand identity with a thoughtful point of view.",
+      "wallet": "DEMO_NOA_NOT_A_REAL_WALLET",
+      "balance": "25000000000"
+    },
+    {
+      "id": "leila",
+      "name": "Leila Hassan",
+      "initials": "LH",
+      "role": "seller",
+      "bio": "Motion designer and visual storyteller.",
+      "wallet": "DEMO_LEILA_NOT_A_REAL_WALLET",
+      "balance": "25000000000"
+    },
+    {
+      "id": "kai",
+      "name": "Kai Brooks",
+      "initials": "KB",
+      "role": "seller",
+      "bio": "Clear words for ambitious products.",
+      "wallet": "DEMO_KAI_NOT_A_REAL_WALLET",
+      "balance": "25000000000"
+    },
+    {
+      "id": "hana",
+      "name": "Hana Park",
+      "initials": "HP",
+      "role": "seller",
+      "bio": "Growth systems and content strategy.",
+      "wallet": "DEMO_HANA_NOT_A_REAL_WALLET",
+      "balance": "25000000000"
+    },
+    {
+      "id": "reviewer",
+      "name": "Pact Review Team",
+      "initials": "PR",
+      "role": "admin",
+      "bio": "Restricted resolution authority in this sandbox.",
+      "wallet": "DEMO_REVIEWER_NOT_A_REAL_WALLET",
+      "balance": "25000000000"
+    }
+  ],
+  "listings": [
+    {
+      "id": "web",
+      "sellerId": "maya",
+      "title": "Build a website that turns your idea into a business",
+      "category": "Development",
+      "description": "A responsive, five-section landing page with a working contact form.",
+      "cover": "web",
+      "headline": "Design it.\nBuild it.\nShip it.",
+      "criteria": [
+        "Responsive at 390 px and 1440 px",
+        "Working contact form with validation",
+        "Source files and deployment instructions"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "450000000",
+          "days": 7,
+          "revisions": 1,
+          "description": "A responsive, five-section landing page with a working contact form."
+        },
+        {
+          "name": "Professional",
+          "price": "900000000",
+          "days": 10,
+          "revisions": 2,
+          "description": "A responsive, five-section landing page with a working contact form. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "1575000000",
+          "days": 13,
+          "revisions": 3,
+          "description": "A responsive, five-section landing page with a working contact form. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "Development",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "ai",
+      "sellerId": "samir",
+      "title": "Automate the busywork with a custom AI workflow",
+      "category": "AI & automation",
+      "description": "One documented automation connecting up to three agreed tools.",
+      "cover": "ai",
+      "headline": "Less busywork.\nMore possibility.",
+      "criteria": [
+        "Demonstration with agreed sample inputs",
+        "Error handling and human approval step",
+        "Workflow export and setup guide"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "250000000",
+          "days": 5,
+          "revisions": 1,
+          "description": "One documented automation connecting up to three agreed tools."
+        },
+        {
+          "name": "Professional",
+          "price": "500000000",
+          "days": 8,
+          "revisions": 2,
+          "description": "One documented automation connecting up to three agreed tools. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "875000000",
+          "days": 11,
+          "revisions": 3,
+          "description": "One documented automation connecting up to three agreed tools. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "AI & automation",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "brand",
+      "sellerId": "noa",
+      "title": "Design a distinctive identity for your next big thing",
+      "category": "Design",
+      "description": "A primary logo, wordmark, color palette, and a concise style guide.",
+      "cover": "brand",
+      "headline": "A little bold.\nEntirely you.",
+      "criteria": [
+        "Two initial visual directions",
+        "Final SVG and PNG exports",
+        "Font licensing and color specifications"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "180000000",
+          "days": 5,
+          "revisions": 1,
+          "description": "A primary logo, wordmark, color palette, and a concise style guide."
+        },
+        {
+          "name": "Professional",
+          "price": "360000000",
+          "days": 8,
+          "revisions": 2,
+          "description": "A primary logo, wordmark, color palette, and a concise style guide. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "630000000",
+          "days": 11,
+          "revisions": 3,
+          "description": "A primary logo, wordmark, color palette, and a concise style guide. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "Design",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "motion",
+      "sellerId": "leila",
+      "title": "Bring your product story to life with motion",
+      "category": "Video & animation",
+      "description": "A 30-second product animation from your approved script.",
+      "cover": "motion",
+      "headline": "Make your\nfirst impression\nmove.",
+      "criteria": [
+        "Approved storyboard before animation",
+        "1080p MP4 export and captions",
+        "Music and asset license notes"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "300000000",
+          "days": 6,
+          "revisions": 1,
+          "description": "A 30-second product animation from your approved script."
+        },
+        {
+          "name": "Professional",
+          "price": "600000000",
+          "days": 9,
+          "revisions": 2,
+          "description": "A 30-second product animation from your approved script. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "1050000000",
+          "days": 12,
+          "revisions": 3,
+          "description": "A 30-second product animation from your approved script. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "Video & animation",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "copy",
+      "sellerId": "kai",
+      "title": "Write a landing page people actually want to read",
+      "category": "Writing",
+      "description": "Conversion-focused copy for five landing-page sections.",
+      "cover": "copy",
+      "headline": "Good words.\nGreat outcomes.",
+      "criteria": [
+        "One headline set and five sections",
+        "Editable document and source notes",
+        "No unsupported product claims"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "120000000",
+          "days": 3,
+          "revisions": 1,
+          "description": "Conversion-focused copy for five landing-page sections."
+        },
+        {
+          "name": "Professional",
+          "price": "240000000",
+          "days": 6,
+          "revisions": 2,
+          "description": "Conversion-focused copy for five landing-page sections. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "420000000",
+          "days": 9,
+          "revisions": 3,
+          "description": "Conversion-focused copy for five landing-page sections. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "Writing",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "growth",
+      "sellerId": "hana",
+      "title": "Create a launch plan with a clear next step",
+      "category": "Marketing",
+      "description": "An actionable launch plan and four-week editorial calendar.",
+      "cover": "growth",
+      "headline": "From idea\nto your people.",
+      "criteria": [
+        "Audience and channel rationale",
+        "Four-week content calendar",
+        "Measurement plan; no revenue guarantee"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "220000000",
+          "days": 5,
+          "revisions": 1,
+          "description": "An actionable launch plan and four-week editorial calendar."
+        },
+        {
+          "name": "Professional",
+          "price": "440000000",
+          "days": 8,
+          "revisions": 2,
+          "description": "An actionable launch plan and four-week editorial calendar. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "770000000",
+          "days": 11,
+          "revisions": 3,
+          "description": "An actionable launch plan and four-week editorial calendar. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "Marketing",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "app",
+      "sellerId": "maya",
+      "title": "Design an intuitive dashboard for your product",
+      "category": "Design",
+      "description": "Three dashboard screens in an editable design file.",
+      "cover": "app",
+      "headline": "Complexity,\nmade clear.",
+      "criteria": [
+        "Desktop and mobile layouts",
+        "Reusable component library",
+        "Developer handover notes"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "350000000",
+          "days": 6,
+          "revisions": 1,
+          "description": "Three dashboard screens in an editable design file."
+        },
+        {
+          "name": "Professional",
+          "price": "700000000",
+          "days": 9,
+          "revisions": 2,
+          "description": "Three dashboard screens in an editable design file. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "1225000000",
+          "days": 12,
+          "revisions": 3,
+          "description": "Three dashboard screens in an editable design file. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "Design",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    },
+    {
+      "id": "agent",
+      "sellerId": "samir",
+      "title": "Build a support assistant with human handoff",
+      "category": "AI & automation",
+      "description": "A sandbox knowledge assistant using your approved help content.",
+      "cover": "agent",
+      "headline": "Helpful by design.",
+      "criteria": [
+        "Responses grounded in supplied documents",
+        "Clear fallback and human escalation",
+        "Test cases and deployment guide"
+      ],
+      "packages": [
+        {
+          "name": "Essential",
+          "price": "500000000",
+          "days": 8,
+          "revisions": 1,
+          "description": "A sandbox knowledge assistant using your approved help content."
+        },
+        {
+          "name": "Professional",
+          "price": "1000000000",
+          "days": 11,
+          "revisions": 2,
+          "description": "A sandbox knowledge assistant using your approved help content. Plus expanded deliverables and source handover."
+        },
+        {
+          "name": "Complete",
+          "price": "1750000000",
+          "days": 14,
+          "revisions": 3,
+          "description": "A sandbox knowledge assistant using your approved help content. Full handover, documentation, and a post-delivery walkthrough."
+        }
+      ],
+      "tags": [
+        "AI & automation",
+        "Fixed scope",
+        "Milestone ready"
+      ],
+      "status": "published",
+      "createdAt": 1788220800000,
+      "sample": true
+    }
+  ],
+  "orders": [
+    {
+      "id": "deal_cd76427f5deb7af8d47ab2d2",
+      "buyerId": "buyer",
+      "sellerId": "noa",
+      "buyerWallet": "DEMO_BUYER_NOT_A_REAL_WALLET",
+      "sellerWallet": "DEMO_NOA_NOT_A_REAL_WALLET",
+      "feeWallet": "DEMO_PLATFORM_FEES_NOT_A_WALLET",
+      "token": "DEMO_USDC_6_DECIMALS_NO_REAL_MINT",
+      "feeBps": 300,
+      "disputeBps": 500,
+      "listingId": "brand",
+      "title": "Design a distinctive identity for your next big thing",
+      "createdAt": 1788134400000,
+      "acceptedAt": null,
+      "fundedAt": null,
+      "cancelled": false,
+      "version": 1,
+      "snapshot": {
+        "title": "Design a distinctive identity for your next big thing",
+        "scope": "A primary logo, wordmark, color palette, and a concise style guide.",
+        "criteria": [
+          "Two initial visual directions",
+          "Final SVG and PNG exports",
+          "Font licensing and color specifications"
+        ],
+        "requirements": "Launch an independent product business. Use the supplied brand brief, approved copy, and acceptance checklist. Please deliver editable source files.",
+        "package": "Essential",
+        "days": 5,
+        "revisions": 1,
+        "acceptance": "manual",
+        "commissionPolicy": "Buyer adds 3%; earned on seller principal released; unused reserve refunded.",
+        "disputePolicy": "Initiator pays an additional non-refundable 5% of the milestone principal in dispute."
+      },
+      "milestones": [
+        {
+          "id": "ms_5832772fe271b27745c61660",
+          "title": "Delivery & handover",
+          "originalAmount": "180000000",
+          "held": "0",
+          "reserve": "0",
+          "sellerPaid": "0",
+          "buyerRefunded": "0",
+          "feePaid": "0",
+          "status": "unfunded",
+          "dueOffset": 5,
+          "dueAt": null,
+          "criteria": [
+            "Two initial visual directions",
+            "Final SVG and PNG exports",
+            "Font licensing and color specifications"
+          ],
+          "scope": "A primary logo, wordmark, color palette, and a concise style guide.",
+          "revisionsUsed": 0,
+          "revision": 1,
+          "deliveries": [],
+          "proposal": null,
+          "proposalHistory": [],
+          "dispute": null,
+          "disputeHistory": [],
+          "termsHistory": []
+        }
+      ],
+      "events": [
+        {
+          "id": "evt_4f57a2d8c30d8c7c784a1242",
+          "actorId": "buyer",
+          "text": "Buyer approved the agreement. Waiting for the seller’s acceptance.",
+          "at": 1788134400000
+        }
+      ],
+      "messages": []
+    },
+    {
+      "id": "deal_28f689ba1637ba95d010481f",
+      "buyerId": "buyer",
+      "sellerId": "leila",
+      "buyerWallet": "DEMO_BUYER_NOT_A_REAL_WALLET",
+      "sellerWallet": "DEMO_LEILA_NOT_A_REAL_WALLET",
+      "feeWallet": "DEMO_PLATFORM_FEES_NOT_A_WALLET",
+      "token": "DEMO_USDC_6_DECIMALS_NO_REAL_MINT",
+      "feeBps": 300,
+      "disputeBps": 500,
+      "listingId": "motion",
+      "title": "Bring your product story to life with motion",
+      "createdAt": 1787961600000,
+      "acceptedAt": 1787961601000,
+      "fundedAt": 1787961602000,
+      "cancelled": false,
+      "version": 6,
+      "snapshot": {
+        "title": "Bring your product story to life with motion",
+        "scope": "A 30-second product animation from your approved script. Plus expanded deliverables and source handover.",
+        "criteria": [
+          "Approved storyboard before animation",
+          "1080p MP4 export and captions",
+          "Music and asset license notes"
+        ],
+        "requirements": "Launch an independent product business. Use the supplied brand brief, approved copy, and acceptance checklist. Please deliver editable source files.",
+        "package": "Professional",
+        "days": 9,
+        "revisions": 2,
+        "acceptance": "manual",
+        "commissionPolicy": "Buyer adds 3%; earned on seller principal released; unused reserve refunded.",
+        "disputePolicy": "Initiator pays an additional non-refundable 5% of the milestone principal in dispute."
+      },
+      "milestones": [
+        {
+          "id": "ms_c604bdeaeae29ad4ad92b5f4",
+          "title": "Delivery & handover",
+          "originalAmount": "600000000",
+          "held": "600000000",
+          "reserve": "18000000",
+          "sellerPaid": "0",
+          "buyerRefunded": "0",
+          "feePaid": "0",
+          "status": "disputed",
+          "dueOffset": 9,
+          "dueAt": 1788739202000,
+          "criteria": [
+            "Approved storyboard before animation",
+            "1080p MP4 export and captions",
+            "Music and asset license notes"
+          ],
+          "scope": "A 30-second product animation from your approved script. Plus expanded deliverables and source handover.",
+          "revisionsUsed": 0,
+          "revision": 3,
+          "deliveries": [
+            {
+              "id": "delivery_82334c50057cf3f4474a4636",
+              "text": "Here is the initial cut based on the approved storyboard. The final export and captions are included in the delivery notes.",
+              "evidence": "Sample video reference only.",
+              "at": 1788048000000
+            }
+          ],
+          "proposal": null,
+          "proposalHistory": [],
+          "dispute": {
+            "id": "case_2baede753af8fa55df4efd59",
+            "claimantId": "buyer",
+            "reason": "The delivery does not include the agreed captions. We disagree about whether a captioned version was included in the original scope.",
+            "fee": "30000000",
+            "at": 1788134400000,
+            "status": "open"
+          },
+          "disputeHistory": [],
+          "termsHistory": [],
+          "submittedAt": 1788048000000,
+          "reviewEndsAt": 1788307200000
+        }
+      ],
+      "events": [
+        {
+          "id": "evt_c434aeb3f406ff08e0fdbbaf",
+          "actorId": "buyer",
+          "text": "Buyer approved the agreement. Waiting for the seller’s acceptance.",
+          "at": 1787961600000
+        },
+        {
+          "id": "evt_9c520b55166fb6455a6ad49c",
+          "actorId": "leila",
+          "text": "Seller approved the exact agreement and fixed payment destinations.",
+          "at": 1787961601000
+        },
+        {
+          "id": "evt_b021eb02807d815aee4b631d",
+          "actorId": "buyer",
+          "text": "618.00 demo USDC locked, including the commission reserve. No real funds moved.",
+          "at": 1787961602000
+        },
+        {
+          "id": "evt_68cdc24d3f1a51eca36cbe90",
+          "actorId": "leila",
+          "text": "Submitted “Delivery & handover” for buyer review.",
+          "at": 1788048000000
+        },
+        {
+          "id": "evt_f258848884ab339c9de63110",
+          "actorId": "buyer",
+          "text": "Dispute opened on “Delivery & handover”; 30.00 additional demo USDC charged to the initiator. Funds frozen.",
+          "at": 1788134400000
+        }
+      ],
+      "messages": [
+        {
+          "id": "msg_b38c4b329bd80007bdf2b558",
+          "actorId": "leila",
+          "text": "I can add the captions. I propose one additional day to finish the missing deliverable rather than cancelling the order.",
+          "at": 1788134401000
+        }
+      ]
+    },
+    {
+      "id": "deal_c0b7d5ca70a193bc1a44e17a",
+      "buyerId": "buyer",
+      "sellerId": "maya",
+      "buyerWallet": "DEMO_BUYER_NOT_A_REAL_WALLET",
+      "sellerWallet": "DEMO_MAYA_NOT_A_REAL_WALLET",
+      "feeWallet": "DEMO_PLATFORM_FEES_NOT_A_WALLET",
+      "token": "DEMO_USDC_6_DECIMALS_NO_REAL_MINT",
+      "feeBps": 300,
+      "disputeBps": 500,
+      "listingId": "web",
+      "title": "Build a website that turns your idea into a business",
+      "createdAt": 1787875200000,
+      "acceptedAt": 1787875201000,
+      "fundedAt": 1787875202000,
+      "cancelled": false,
+      "version": 7,
+      "snapshot": {
+        "title": "Build a website that turns your idea into a business",
+        "scope": "A responsive, five-section landing page with a working contact form. Plus expanded deliverables and source handover.",
+        "criteria": [
+          "Responsive at 390 px and 1440 px",
+          "Working contact form with validation",
+          "Source files and deployment instructions"
+        ],
+        "requirements": "Launch an independent product business. Use the supplied brand brief, approved copy, and acceptance checklist. Please deliver editable source files.",
+        "package": "Professional",
+        "days": 10,
+        "revisions": 2,
+        "acceptance": "manual",
+        "commissionPolicy": "Buyer adds 3%; earned on seller principal released; unused reserve refunded.",
+        "disputePolicy": "Initiator pays an additional non-refundable 5% of the milestone principal in dispute."
+      },
+      "milestones": [
+        {
+          "id": "ms_ab1691fcd65c75623cbd58c3",
+          "title": "Direction & plan",
+          "originalAmount": "180000000",
+          "held": "0",
+          "reserve": "0",
+          "sellerPaid": "180000000",
+          "buyerRefunded": "0",
+          "feePaid": "5400000",
+          "status": "released",
+          "dueOffset": 4,
+          "dueAt": 1788220802000,
+          "criteria": [
+            "Responsive at 390 px and 1440 px",
+            "Working contact form with validation",
+            "Source files and deployment instructions"
+          ],
+          "scope": "A responsive, five-section landing page with a working contact form. Plus expanded deliverables and source handover.",
+          "revisionsUsed": 0,
+          "revision": 3,
+          "deliveries": [
+            {
+              "id": "delivery_5562f8ef5d15b04db5c4b823",
+              "text": "The agreed direction and page structure are ready. All checklist items are mapped to the project plan.",
+              "evidence": "Sample direction document (no uploaded file).",
+              "at": 1787961600000
+            }
+          ],
+          "proposal": null,
+          "proposalHistory": [],
+          "dispute": null,
+          "disputeHistory": [],
+          "termsHistory": [],
+          "submittedAt": 1787961600000,
+          "reviewEndsAt": 1788220800000,
+          "settledAt": 1787961601000
+        },
+        {
+          "id": "ms_d85e2a555baf573b31014e86",
+          "title": "Build & deliver",
+          "originalAmount": "450000000",
+          "held": "450000000",
+          "reserve": "13500000",
+          "sellerPaid": "0",
+          "buyerRefunded": "0",
+          "feePaid": "0",
+          "status": "submitted",
+          "dueOffset": 7,
+          "dueAt": 1788480002000,
+          "criteria": [
+            "Responsive at 390 px and 1440 px",
+            "Working contact form with validation",
+            "Source files and deployment instructions"
+          ],
+          "scope": "A responsive, five-section landing page with a working contact form. Plus expanded deliverables and source handover.",
+          "revisionsUsed": 0,
+          "revision": 2,
+          "deliveries": [
+            {
+              "id": "delivery_89612862b0053a9f2575a23b",
+              "text": "The responsive build and validated contact form are ready for your review against the acceptance checklist.",
+              "evidence": "Sample delivery reference only; no live website is attached.",
+              "at": 1788134400000
+            }
+          ],
+          "proposal": null,
+          "proposalHistory": [],
+          "dispute": null,
+          "disputeHistory": [],
+          "termsHistory": [],
+          "submittedAt": 1788134400000,
+          "reviewEndsAt": 1788393600000
+        },
+        {
+          "id": "ms_6134203f2736b1ba5976b985",
+          "title": "Handover & finish",
+          "originalAmount": "270000000",
+          "held": "270000000",
+          "reserve": "8100000",
+          "sellerPaid": "0",
+          "buyerRefunded": "0",
+          "feePaid": "0",
+          "status": "funded",
+          "dueOffset": 10,
+          "dueAt": 1788739202000,
+          "criteria": [
+            "Responsive at 390 px and 1440 px",
+            "Working contact form with validation",
+            "Source files and deployment instructions"
+          ],
+          "scope": "A responsive, five-section landing page with a working contact form. Plus expanded deliverables and source handover.",
+          "revisionsUsed": 0,
+          "revision": 1,
+          "deliveries": [],
+          "proposal": null,
+          "proposalHistory": [],
+          "dispute": null,
+          "disputeHistory": [],
+          "termsHistory": []
+        }
+      ],
+      "events": [
+        {
+          "id": "evt_7320ec0c643bb7245279998b",
+          "actorId": "buyer",
+          "text": "Buyer approved the agreement. Waiting for the seller’s acceptance.",
+          "at": 1787875200000
+        },
+        {
+          "id": "evt_12a65bea387fb9ed31b6baa8",
+          "actorId": "maya",
+          "text": "Seller approved the exact agreement and fixed payment destinations.",
+          "at": 1787875201000
+        },
+        {
+          "id": "evt_0d2ad9b3ee8c7e0b98ea00be",
+          "actorId": "buyer",
+          "text": "927.00 demo USDC locked, including the commission reserve. No real funds moved.",
+          "at": 1787875202000
+        },
+        {
+          "id": "evt_5666a87a47fe47ce9748def9",
+          "actorId": "maya",
+          "text": "Submitted “Direction & plan” for buyer review.",
+          "at": 1787961600000
+        },
+        {
+          "id": "evt_2fd0012399d2664a9f603e73",
+          "actorId": "buyer",
+          "text": "Accepted “Direction & plan”. Payment released to the original seller.",
+          "at": 1787961601000
+        },
+        {
+          "id": "evt_606f89590d1b20daf22aaf3b",
+          "actorId": "maya",
+          "text": "Submitted “Build & deliver” for buyer review.",
+          "at": 1788134400000
+        }
+      ],
+      "messages": [
+        {
+          "id": "msg_2bdd5b249ad3ee7d76595106",
+          "actorId": "maya",
+          "text": "The second milestone is ready. Please review the responsive layouts and the form before approving payment.",
+          "at": 1788134401000
+        }
+      ]
+    }
+  ],
+  "briefs": [
+    {
+      "id": "brief_02b72a535e009dd5ad00b284",
+      "buyerId": "buyer",
+      "title": "Design a clean onboarding flow for a new product",
+      "category": "Design",
+      "budget": "650000000",
+      "description": "We need three onboarding screens, mobile and desktop layouts, editable source files, and clear developer handoff. Please propose fixed scope and a realistic delivery schedule.",
+      "createdAt": 1788134400000,
+      "proposals": []
+    }
+  ],
+  "reviews": [],
+  "treasury": {
+    "wallet": "DEMO_PLATFORM_FEES_NOT_A_WALLET",
+    "commission": "5400000",
+    "disputeFees": "30000000"
+  },
+  "initialFunds": "200000000000"
+}
