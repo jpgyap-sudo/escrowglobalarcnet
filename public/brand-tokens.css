@@ -1,0 +1,27 @@
+/* Escrow Global — semantic brand tokens. Loaded before styles.css / universal.css. */
+:root{
+  --brand-primary:#102a43;
+  --brand-accent:#087f8c;
+  --brand-soft:#ddf4f2;
+  --brand-page:#f7fafc;
+  --brand-surface:#fff;
+  --brand-text:#243b53;
+  --brand-muted:#52677a;
+  --brand-border:#d5e1ea;
+  --brand-border-strong:#7b91a6;
+  --brand-focus:#0a5f6a;
+  --brand-success:#1f7a4d;
+  --brand-success-bg:#e6f4ec;
+  --brand-success-border:#bfe0cd;
+  --brand-warning:#8a5a12;
+  --brand-warning-bg:#fdf3e0;
+  --brand-warning-border:#ecd9b3;
+  --brand-danger:#a02b2b;
+  --brand-danger-bg:#fbeaea;
+  --brand-danger-border:#ecc6c6;
+  --brand-shadow:0 15px 50px #102a430d;
+  --brand-radius:18px;
+  --brand-font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  --brand-font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+

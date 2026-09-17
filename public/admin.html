@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#102a43">
+  <title>Operations · Escrow Global</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/brand-tokens.css">
+  <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+  <a class="skip-link" href="#admin-app" title="Skip to operator console">Skip to operator console</a>
+
+  <main id="admin-login" class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+      <a class="login-brand" href="https://www.escrowglobal.io" rel="noreferrer">
+        <span class="brand-mark" aria-hidden="true">E</span>
+        <span class="brand-name">Escrow Global</span>
+      </a>
+      <p class="eyebrow">Protected operator access</p>
+      <h1 id="login-title">Sign in to operations</h1>
+      <p class="login-copy">
+        This console is restricted to authorized operators. It shows real first-party traffic and visitor chat
+        from this site, kept separate from the sandbox marketplace workspace.
+      </p>
+
+      <p id="admin-session-status" class="session-status" role="status" aria-live="polite">Checking existing session…</p>
+      <button id="admin-session-retry" class="btn btn-ghost" type="button" hidden>Retry session check</button>
+
+      <form id="admin-login-form" class="login-form" autocomplete="on" novalidate>
+        <div class="field">
+          <label for="admin-email">Email</label>
+          <input id="admin-email" name="email" type="email" autocomplete="username" inputmode="email" required>
+        </div>
+        <div class="field">
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <p id="admin-login-error" class="login-error" role="alert" aria-live="polite" hidden></p>
+        <button id="admin-login-submit" class="btn btn-primary" type="submit">Sign in</button>
+      </form>
+
+      <p class="login-note">
+        Sandbox console · no real funds or custody. Real traffic and visitor chat are separated from sandbox data.
+      </p>
+      <p class="login-links">
+        <a href="https://www.escrowglobal.io" rel="noreferrer">Marketplace</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://www.escrowglobal.io/blog" rel="noreferrer">Public blog</a>
+      </p>
+    </section>
+  </main>
+
+  <div id="admin-app" tabindex="-1" hidden>
+    <div class="loading" role="status" aria-live="polite">Loading operator console…</div>
+  </div>
+
+  <dialog id="admin-action-dialog" class="action-dialog" aria-labelledby="admin-action-title" aria-describedby="admin-action-desc">
+    <form id="admin-action-form" class="action-form" novalidate>
+      <header class="action-head">
+        <h2 id="admin-action-title">Action</h2>
+        <p id="admin-action-desc" class="action-desc"></p>
+      </header>
+      <div id="admin-action-body" class="action-body"></div>
+      <p id="admin-action-error" class="form-error" role="alert" hidden></p>
+      <footer class="action-foot">
+        <button id="admin-action-cancel" class="btn btn-ghost" type="button">Cancel</button>
+        <button id="admin-action-submit" class="btn btn-primary" type="submit">Save changes</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript-banner" role="alert">
+      <p><strong>JavaScript is required.</strong> The operator console needs JavaScript to sign in and load data.</p>
+      <p><a class="btn btn-primary" href="https://www.escrowglobal.io">Return to the marketplace</a></p>
+    </div>
+  </noscript>
+
+  <script type="module" src="/admin.mjs"></script>
+</body>
+</html>
