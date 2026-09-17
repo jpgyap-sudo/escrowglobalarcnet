@@ -2,6 +2,10 @@
 
 **A runnable physical-goods and services marketplace sandbox, with restricted escrow workflows, configurable payment adapters, and Android/iOS source templates.**
 
+## Arc Network separation status
+
+This repository is the Arc Network build line (`escrowglobalarcnet`). The current browser demo remains an explicitly non-custodial sandbox, and no Arc escrow contract or live custody flow is deployed yet. The existing custody package is Solana-specific and is retained as migration reference only; Arc implementation work must use the official Arc EVM/USDC-gas model and be added behind new, tested boundaries. See [`docs/ARCNET-MIGRATION.md`](docs/ARCNET-MIGRATION.md) before implementing onchain settlement.
+
 Escrow Global is a working name, not a trademark clearance. This is original product code, not Fiverr’s source code or an official Jupiter/MoonPay app.
 
 ## Read this before running
