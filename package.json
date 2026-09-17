@@ -1,0 +1,38 @@
+{
+  "name": "escrow-global-settlement-sandbox",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Escrow Global Settlement: USDT/USDC marketplace and milestone-agreement sandbox, with separate external wallet tools and mobile source templates. No live custody.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:production:custody": "node --test tests/production/custody-contracts/*.test.mjs",
+    "build:preview": "node scripts/build-preview.mjs",
+    "build:mobile": "node scripts/build-preview.mjs && node scripts/build-mobile.mjs",
+    "test:browser": "python tests/browser_universal.py",
+    "test:browser:http": "python tests/browser_http.py",
+    "test:qr": "python tests/qr_reference.py",
+    "build:custody:abi": "node scripts/generate-custody-abi.mjs",
+    "build:custody:sbf": "cargo build-sbf --arch v3 --manifest-path packages/custody-contracts/program/Cargo.toml --sbf-out-dir packages/custody-contracts/program/target/deploy",
+    "test:custody:sbf": "node scripts/run-custody-sbf-tests.mjs --compat",
+    "test:custody:sbf:release": "node scripts/run-custody-sbf-tests.mjs",
+    "verify:custody:lint": "cargo fmt --manifest-path packages/custody-contracts/program/Cargo.toml -- --check && cargo clippy --manifest-path packages/custody-contracts/program/Cargo.toml --locked --offline --lib -- -D warnings",
+    "verify:custody:abi": "node scripts/verify-custody-abi.mjs",
+    "verify:custody:abi:source": "node scripts/verify-custody-abi.mjs --source-only",
+    "verify:custody:manifest": "node scripts/verify-custody-deployment-manifest.mjs",
+    "prepare:custody:manifest": "node scripts/prepare-custody-deployment-manifest.mjs",
+    "verify:custody:onchain": "node scripts/verify-custody-onchain.mjs",
+    "verify:manifest": "node scripts/verify-manifest.mjs",
+    "generate:manifest": "node scripts/generate-manifest.mjs",
+    "verify:capabilities": "node scripts/render-capabilities.mjs",
+    "build:evidence": "node scripts/build-evidence-bundle.mjs",
+    "probe:custody:sbf:release": "node scripts/probe-custody-release-sbf.mjs",
+    "test:rebrand": "python tests/browser_rebrand.py",
+    "test:storage": "python tests/storage_migration.py",
+    "test:packaging": "python tests/rebrand_packaging.py"
+  }
+}

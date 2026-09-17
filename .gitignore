@@ -1,0 +1,26 @@
+.env
+.env.*
+!.env.example
+data/
+node_modules/
+.DS_Store
+*.log
+mobile/android/.gradle/
+mobile/android/local.properties
+mobile/android/**/build/
+mobile/ios/DerivedData/
+*.jks
+*.keystore
+*.p12
+*.mobileprovision
+
+# Local learning and generated test/build artifacts
+memory/
+test-output.txt
+packages/**/target/
+dist/
+
+# Temporary local probes and deployment scratch work
+.tmp-*/
+packages/custody-contracts/program/tests/v3-runtime/
+
